@@ -2,14 +2,25 @@
 $black: #000
 $white: #fff
 
+
 $light1: #E8F3FB
+$light2: #F8F8F8
 $dark1: #171717	
 $dark2: #0D0D0D
+$dark3: #232323
+$dark4: #2F2F2F
+$dark5: #303030
+$dark6: #484848
+$dark7: #454545
+
+
+
 $grey1: #D9D9D9
 $grey2: #404040
 //$grey3: #A6A6A6
 $grey3: #818181
 $grey4: #A6A6A6
+
 
 
 $red: #8B0C0B
@@ -20,6 +31,7 @@ $blue: #28A8EA
 $blue2: #1DA1F2
 $blue3: #0077B7
 $blue4: #00F7EF
+$blue5: #CCCFFD
 $green: #099818
 
 
@@ -101,14 +113,63 @@ $gap16: 16px
 	@if $theme == dark
 		background-color: $dark2
 		color: $grey1
+
+		&.white
+			background-color: $white
+			color: $dark3
+
+			.footer
+				background-color: $light2
+				color: $black
+
+			.soc svg
+				fill: inherit
+
+			.btn--white
+				background-color: rgba($black, 0.07)
+				color: $dark4
+
+			.text__sub
+				color: $dark6
+
+			.box
+				color: $black
+				&::after
+					background: linear-gradient(180deg,transparent 0%,$white 75%)
+
+			.switch
+				input
+					&.active + .switch__slide, &:checked + .switch__slide
+						&::before
+							background-color: $dark5
+						svg
+							&:last-child
+								color: $white
+
+			.subscribe
+				background-color: $white
+				border-color: $white
+				color: $dark7
+				&__img img
+					filter: invert(1)
+
+			.socials
+				background-color: $blue5
+				color: rgba(22, 22, 100, 0.5)
+
+			
+
 	@if $theme == dark2
 		border-color: $dark
 		background-color: $dark
 		color: $grey1
+
 	@if $theme == dark3
 		border-color: $dark1
 		background-color: $dark1
 		color: $grey1
+
+
 	@if $theme == white
 		background-color: $white
 		color: $balck

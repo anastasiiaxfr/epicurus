@@ -1,7 +1,7 @@
 baseURL = "/"
 # canonifyURLs = true
 defaultContentLanguage = "en"
-disableLanguages = []
+disableLanguages = ["ua"]
 paginate = "6"
 relativeURLs = true
 summaryLength = "50"

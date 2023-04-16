@@ -67,11 +67,11 @@ header
 .nav
     &-item
         margin-right: $gap40
-        &:last-of-type
-            margin-right: 0
+        // &:last-of-type
+        //     margin-right: 0
 
     &-link
-        color: $grey1    
+        color: inherit   
         &:hover, &:active, &:focus
             color: $white
     +maw($md)
@@ -92,7 +92,7 @@ header
         padding-bottom: 10px
         padding-top: 60px
         text-align: center 
-        +ft(12, 14, 700)  
+        +ft(12, 14, 400, $ffText)  
     &__top
         +flex(flex, flex-start, space-between, wrap)  
         +maw($lg)
@@ -111,11 +111,12 @@ header
         li 
             a
                 display: block
-                +ft(16, 18, 400)
+                +ft(14, 18, 400, $ffText)
                 padding: 7px 0
             &:hover, &:focus, &:active
                 a
-                    color: $white
+                    color: inherit
+                    text-decoration: underline
     +maw($lg)
         &__nav
             width: 80%
