@@ -6,6 +6,10 @@ h1
         +ft(34, 34*1.25, 400, $ffHeading)
     +maw($xs)
         +ft(28, 28*1.25, 400, $ffHeading)
+    .page__single &
+        +ft(32, 32*1.25, 700, $ffHeading)
+        +maw($xs)
+            +ft(28, 28*1.25, 700, $ffHeading)
 h2
     margin-bottom: $gap20
     +ft(40, 60, 400, $ffHeading)
@@ -18,7 +22,9 @@ h2
         margin-bottom: 24px
         +ft(28, 32, 700)
         &:not(:first-child)
-            margin-top: 24px
+            margin-top: 40px
+        +maw($xs)
+            +ft(25, 25*1.5, 700, $ffHeading)
         
 p
     .page__single &

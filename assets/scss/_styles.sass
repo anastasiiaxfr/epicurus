@@ -1,591 +1,586 @@
 body
-    +theme(dark)
-    background-image: url('../images/bg.svg') 
-    background-repeat: no-repeat
-    background-position: top center
-    background-size: cover 
+	+theme(dark)
+	background-image: url('../images/bg.svg')
+	background-repeat: no-repeat
+	background-position: top center
+	background-size: cover
 
-    overflow: hidden !important
-    overflow-y: auto !important
-    padding-right: 0 !important
+	overflow: hidden !important
+	overflow-y: auto !important
+	padding-right: 0 !important
 
 a
-    &:hover, &:focus, &:active
-        color: inherit
+	&:hover, &:focus, &:active
+		color: inherit
 
 .page
-    &__single
-        margin-top: 150px
-        margin-bottom: 150px
+	&__single
+		margin-top: 50px
+		margin-bottom: 150px
 
-        +maw($sm)
-            margin-top: 0px
-            margin-bottom: 50px
-        
-    &__sidebar
-        @extend .col-lg-3
-        position: relative
-        margin-bottom: 24px
-    &__content
-        @extend .col-lg-9
-       
-        iframe
-            width: 100%
-            border-radius: 16px
-            overflow: hidden
+		+maw($sm)
+			margin-top: 20px
+			margin-bottom: 50px
 
+	&__sidebar
+		@extend .col-lg-3
+		position: relative
+		margin-bottom: 24px
+	&__content
+		@extend .col-lg-9
+		user-select: initial
 
-    &__box
-        @extend .box
-  
+		iframe
+			width: 100%
+			border-radius: 16px
+			overflow: hidden
 
-// .toc
-//     @extend .box
-//     position: sticky
-//     top: 15px
-//     &__header
-//         +flex(flex, center, space-between, nowrap)
-//         cursor: pointer
-//         +ft(18, 20, 400)
+	&__box
+		position: relative
+		flex-wrap: wrap
+		margin-top: 0
+		@extend %box1
+		background-image: none
+		&::after
+			background-image: linear-gradient(180deg,transparent 0%, $blue6 75%)
 
-//         svg
-//             margin-left: 15px
-//             fill: $grey1
-//             transform: rotate(180deg)
-//             transition: $trs
-//             &.active
-//                 transform: rotate(0deg)
+		ul li
+			&:not(:last-of-type)
+				margin-top: 24px
 
-//     &__body
-//         display: none 
+.toc
+	@extend %box1
+	background-image: none
+	position: sticky
+	top: 15px
+	user-select: none
+	&::after
+		background-image: linear-gradient(180deg,transparent 0%, $blue6 75%)
+	&__header
+		+flex(flex, center, space-between, nowrap)
+		cursor: pointer
+		+ft(18, 20, 400)
 
-//         ol
-//             margin: 20px 0
-//             li
-//                 margin: 8px 0
-//                 a
-//                     transition: $trs
-//                     &:focus, &:active, &:hover
-//                         text-decoration: underline
+		svg
+			margin-left: 15px
+			fill: $grey1
+			transform: rotate(180deg)
+			transition: $trs
+			&.active
+				transform: rotate(0deg)
 
+	&__body
+		display: none
+
+		ol
+			margin: 20px 0
+			li
+				margin: 8px 0
+				a
+					transition: $trs
+					&:focus, &:active, &:hover
+						text-decoration: underline
 
 .hero
-    margin: auto
+	margin: auto
 
-    &__wrap
-        position: relative   
-        height: 100vh
-        +flex(flex, center, center, wrap)
-        flex-direction: column
-        
-    
-    .text__sub
-        margin-top: 16px
-        margin-bottom: 40px
-        color: $grey4
+	&__wrap
+		position: relative
+		height: 100vh
+		+flex(flex, center, center, wrap)
+		flex-direction: column
 
-    &__bg
-        z-index: -1
-        +ps(absolute, (t, 0), (b, 0), (r, 0), (l, 0))
-        display: flex
-        justify-content: center
-        margin: auto
-        img
-            position: absolute
-            &:last-child
-                top: auto
-                bottom: 0
-                right: auto
-                left: calc(50% - 402px)
-                max-width: 402px
-                width: 100%
-            &:first-child
-                top: 20%
-                left: 10%
-                right: 0
-                bottom: auto
-                margin: auto
-                width: 100px
-                transform: scale(2)
-    +maw($md)
-        padding-top: $gap40 + 30px
-        padding-bottom: $gap40 + 30px
-        &__wrap
-            height: auto
-    +maw($xs)
-        padding-top: $gap20 + 20px
-        padding-bottom: $gap20 + 20px
-           
-           
+	.text__sub
+		margin-top: 16px
+		margin-bottom: 40px
+		color: $grey4
+
+	&__bg
+		z-index: -1
+		+ps(absolute, (t, 0), (b, 0), (r, 0), (l, 0))
+		display: flex
+		justify-content: center
+		margin: auto
+		img
+			position: absolute
+			&:last-child
+				top: auto
+				bottom: 0
+				right: auto
+				left: calc(50% - 402px)
+				max-width: 402px
+				width: 100%
+			&:first-child
+				top: 20%
+				left: 10%
+				right: 0
+				bottom: auto
+				margin: auto
+				width: 100px
+				transform: scale(2)
+	+maw($md)
+		padding-top: $gap40 + 30px
+		padding-bottom: $gap40 + 30px
+		&__wrap
+			height: auto
+	+maw($xs)
+		padding-top: $gap20 + 20px
+		padding-bottom: $gap20 + 20px
+
 .logo
-    +maw($xs)
-        img
-            +sz(80px, auto)
-            object-fit: contain               
+	user-select: none
+
+	+maw($xs)
+		img
+			+sz(80px, auto)
+			object-fit: contain
 
 .socials
-    +flex(flex, center, center, nowrap)
-    padding: $gap40
-    +theme(dark3)
-    border: 2px solid transparent
-    border-radius: $brs
-    text-align: center
-    +ft(28, 42, 600, $ffHeading)
-    opacity: 0.5
-    cursor: pointer
-    transition: $trs
-    &:hover, &:active, &:focus
-        opacity: 1
-        color: $white
-        svg
-            &:first-of-type
-                display: none
-            &:last-of-type
-                display: block
-    +maw($xs)
-        padding: 20px
-        +ft(20, 20, 700)
-    &--tk
-        &:hover, &:active, &:focus
-            box-shadow: $bxsd1
-    &--tm
-        &:hover, &:active, &:focus
-            border-color: $blue
-    &--ytb
-        &:hover, &:active, &:focus
-            border-color: $red
-    &--rd
-        &:hover, &:active, &:focus
-            box-shadow: $bxsd2
-    &--ln
-        &:hover, &:active, &:focus
-            border-color: $blue3
-    &--tw
-        &:hover, &:active, &:focus
-            border-color: $blue2
+	+flex(flex, center, center, nowrap)
+	padding: $gap40
+	+theme(dark3)
+	border: 2px solid transparent
+	border-radius: $brs
+	text-align: center
+	+ft(28, 42, 600, $ffHeading)
+	opacity: 0.5
+	cursor: pointer
+	transition: $trs
+	&:hover, &:active, &:focus
+		opacity: 1
+		color: $white
+		svg
+			&:first-of-type
+				display: none
+			&:last-of-type
+				display: block
+	+maw($xs)
+		padding: 20px
+		+ft(20, 20, 700)
+	&--tk
+		&:hover, &:active, &:focus
+			box-shadow: $bxsd1
+	&--tm
+		&:hover, &:active, &:focus
+			border-color: $blue
+	&--ytb
+		&:hover, &:active, &:focus
+			border-color: $red
+	&--rd
+		&:hover, &:active, &:focus
+			box-shadow: $bxsd2
+	&--ln
+		&:hover, &:active, &:focus
+			border-color: $blue3
+	&--tw
+		&:hover, &:active, &:focus
+			border-color: $blue2
 
-    svg
-        +sz(40px, 40px)
-        margin-right: 18px
-        &, & > *
-            fill: red
-        &:last-of-type
-            display: none
+	svg
+		+sz(40px, 40px)
+		margin-right: 18px
+		&, & > *
+			fill: red
+		&:last-of-type
+			display: none
 
-    &__wrap
-        display: grid
-        grid-template-columns: repeat(auto-fill,minmax(413px,1fr))
-        gap: 20px    
-  
-        +maw($xs)
-            grid-template-columns: 1fr
-    +maw($xs)
-        &__title
-            +ft(15, 15, 700)
-        
+	&__wrap
+		display: grid
+		grid-template-columns: repeat(auto-fill,minmax(413px,1fr))
+		gap: 20px
+
+		+maw($xs)
+			grid-template-columns: 1fr
+	+maw($xs)
+		&__title
+			+ft(15, 15, 700)
 
 .subscribe
-    position: relative
-    z-index: 1
-    display: grid
-    grid-template-columns: 1fr 1fr
-    margin-top: $gap120
-    margin-bottom: $gap120
-    padding: $gap40
-    align-items: center
-    +theme(dark3)
-    border-radius: 26px
-    color: $grey1
-    &::after
-        content: ''
-        display: block
-        +ps(absolute, (t, 0), (l, 0))
-        z-index: -1
-        +sz(100%, 100%)
-        border-radius: 26px
-        background-image: url('../images/subscribe_bg_2.svg'), url('../images/subscribe_bg_1.svg')
-        background-repeat: no-repeat
-        overflow: hidden
-        opacity: 0.4
-    &__title
-        margin-bottom: 20px
-        +ft(24, 36, 600, $ffHeading)
-    &__text
-        margin-bottom: 40px
-        +ft(16, 20, 400, $ffText)
-    &__img
-        display: flex
-        justify-content: center
-        position: relative
-        height: 100%
-        border-radius: 15px
-        img
-            display: block
-            +ps(absolute, (t, 0), (b, 0), (l, 0), (r, 0))
-            margin: auto
-            object-fit: contain
-            border-radius: 18px
-            &:first-of-type
-                transform: translateY(-60px) translateX(-50%)
-                z-index: 1
-            &:last-of-type
-                transform: translateY(40px) translateX(40px)
-        +maw(1400)
-            img
-                left: 0
-                right: auto
-                max-width: 30vmax   
-                &:first-of-type
-                    transform: translateY(-60px)
-                &:last-of-type
-                    transform: none
-                    left: auto
-                    right: 0
-                    top: auto
-                    bottom: -7vmax
-                    object-position: bottom
+	position: relative
+	z-index: 1
+	display: grid
+	grid-template-columns: 1fr 1fr
+	margin-top: $gap120
+	margin-bottom: $gap120
+	padding: $gap40
+	align-items: center
+	+theme(dark3)
+	border-radius: 26px
+	color: $grey1
+	&::after
+		content: ''
+		display: block
+		+ps(absolute, (t, 0), (l, 0))
+		z-index: -1
+		+sz(100%, 100%)
+		border-radius: 26px
+		background-image: url('../images/subscribe_bg_2.svg'), url('../images/subscribe_bg_1.svg')
+		background-repeat: no-repeat
+		overflow: hidden
+		opacity: 0.4
+	&__title
+		margin-bottom: 20px
+		+ft(24, 36, 600, $ffHeading)
+	&__text
+		margin-bottom: 40px
+		+ft(16, 20, 400, $ffText)
+	&__img
+		display: flex
+		justify-content: center
+		position: relative
+		height: 100%
+		border-radius: 15px
+		img
+			display: block
+			+ps(absolute, (t, 0), (b, 0), (l, 0), (r, 0))
+			margin: auto
+			object-fit: contain
+			border-radius: 18px
+			&:first-of-type
+				transform: translateY(-60px) translateX(-50%)
+				z-index: 1
+			&:last-of-type
+				transform: translateY(40px) translateX(40px)
+		+maw(1400)
+			img
+				left: 0
+				right: auto
+				max-width: 30vmax
+				&:first-of-type
+					transform: translateY(-60px)
+				&:last-of-type
+					transform: none
+					left: auto
+					right: 0
+					top: auto
+					bottom: -7vmax
+					object-position: bottom
 
-    +maw(992)
-        grid-template-columns: 1fr
-        margin-top: $gap120/2
-        margin-bottom: $gap120/2
-        text-align: center
-        &__img
-            max-width: 100%
-            height: 200px
-            margin-top: 60px
-            img
-                max-width: 40vmax
-                left: 0
-                right: 0
-                
-                &:first-of-type
-                    transform: translateY(40px) 
-                    right: auto
-                &:last-of-type
-                    transform: none
-                    bottom: -10vmax
-    +maw(772)
-        overflow: hidden
-        text-align: center
-        &::after
-            display: none
-        &__text
-            +ft(15, 15*1.5, 400)
-        &__img
-            margin: -20px auto -40px
-            max-width: 100%
-            width: 100%
-            img
-                left: 5px
-                &:first-of-type
-                    transform: none
-                    left: 0
-                    right: auto
-                    bottom: 0
-                    top: 0
-                    /* object-position: center */
-                    margin: 0
-                &:last-of-type
-                    transform: none
-                    right: 0
-                    bottom: 0
-                    top: 0
-                    object-position: bottom
-                    margin: 0     
+	+maw(992)
+		grid-template-columns: 1fr
+		margin-top: $gap120/2
+		margin-bottom: $gap120/2
+		text-align: center
+		&__img
+			max-width: 100%
+			height: 200px
+			margin-top: 60px
+			img
+				max-width: 40vmax
+				left: 0
+				right: 0
+
+				&:first-of-type
+					transform: translateY(40px)
+					right: auto
+				&:last-of-type
+					transform: none
+					bottom: -10vmax
+	+maw(772)
+		overflow: hidden
+		text-align: center
+		&::after
+			display: none
+		&__text
+			+ft(15, 15*1.5, 400)
+		&__img
+			margin: -20px auto -40px
+			max-width: 100%
+			width: 100%
+			img
+				left: 5px
+				&:first-of-type
+					transform: none
+					left: 0
+					right: auto
+					bottom: 0
+					top: 0
+					/* object-position: center */
+					margin: 0
+				&:last-of-type
+					transform: none
+					right: 0
+					bottom: 0
+					top: 0
+					object-position: bottom
+					margin: 0
 
 .card
-    position: relative
-    +flex(flex, initial, space-between, wrap)
-    flex-direction: column
-    margin-bottom: 0
-    padding: $gap20
-    +theme(dark3)
-    color: $grey1
-    border-radius: $brs
-    text-align: left
-    transition: $trs    
-    &::before
-        @extend %mask
-    &:hover::before
-        z-index: 0
-    &__wrap
-        display: grid
-        grid-template-columns: repeat(auto-fit,minmax(320px,1fr))
-        grid-gap: 1.25rem  
+	position: relative
+	+flex(flex, initial, space-between, wrap)
+	flex-direction: column
+	margin-bottom: 0
+	padding: $gap20
+	+theme(dark3)
+	color: $grey1
+	border-radius: $brs
+	text-align: left
+	transition: $trs
+	&::before
+		@extend %mask
+	&:hover::before
+		z-index: 0
+	&__wrap
+		display: grid
+		grid-template-columns: repeat(auto-fit,minmax(320px,1fr))
+		grid-gap: 1.25rem
 
-        margin-top: $gap40
-        margin-bottom: $gap120 
-    &__content
-        margin-top: $gap20
-        margin-bottom: $gap40
-    &__title
-        +ft(16, 18, 700)
-        margin-bottom: $gap20
-    &__text
-        +ft(16, 18, 400)
-    &__label
-        min-width: 110px
-        padding: 8px 16px
-        border: none
-        border-radius: $brs/2
-        background-color: $grey2
-        color: $grey1
+		margin-top: $gap40
+		margin-bottom: $gap120
+	&__content
+		margin-top: $gap20
+		margin-bottom: $gap40
+	&__title
+		+ft(16, 18, 700)
+		margin-bottom: $gap20
+	&__text
+		+ft(16, 18, 400)
+	&__label
+		min-width: 110px
+		padding: 8px 16px
+		border: none
+		border-radius: $brs/2
+		background-color: $grey2
+		color: $grey1
 
-        text-align: center
-        text-transform: uppercase
-        +ft(16, 18, 700)
-        &--done
-            color: $green
-    &__icon
-        svg
-            +sz(40px, 40px)
-    +maw($sm)
-        &__wrap
-            margin-top: $gap120/2
-            margin-bottom: $gap120/2
-    +maw($xs)
-        &__wrap
-            grid-template-columns: 1fr
-        &__label
-            padding-top: 12px
-            padding-bottom: 12px
-            +ft(10, 10, 700)
-        &__text
-            +ft(14, 14*1.5, 400)
+		text-align: center
+		text-transform: uppercase
+		+ft(16, 18, 700)
+		&--done
+			color: $green
+	&__icon
+		svg
+			+sz(40px, 40px)
+	+maw($sm)
+		&__wrap
+			margin-top: $gap120/2
+			margin-bottom: $gap120/2
+	+maw($xs)
+		&__wrap
+			grid-template-columns: 1fr
+		&__label
+			padding-top: 12px
+			padding-bottom: 12px
+			+ft(10, 10, 700)
+		&__text
+			+ft(14, 14*1.5, 400)
 
 #roadmap
-    position: relative
-    overflow: hidden
+	position: relative
+	overflow: hidden
 .roadmap
-    position: relative
-    display: grid
-    grid-template-columns: 1fr 1fr 1fr 1fr
-    margin-top: 10%
-    margin-bottom: 5%
-    counter-reset: counter
-    &::after
-        content: ''
-        display: block
-        +sz(100%, 200px)
-        +ps(absolute, (t, 297px), (l, 0))
-        background: url('../images/roadmap_line.svg') no-repeat 50%/contain
-    &__bg
-        +ps(absolute, (t, 0), (l, 0))
-        +sz(100%, 100%)
-        img
-            +ps(absolute, (t, 0), (l, 0))
-            display: block
-            object-fit: contain
-            
-            &:first-child
-                left: 12%
-                top: 6%
-                max-width: 600px
-                width: 100%
-            &:nth-child(2)
-                right: 25%
-                left: auto
-                top: auto
-                bottom: 15%
-                transform: scale(1.5)
-            &:nth-child(3)
-                left: auto
-                right: 30%
-                top: 15%
-                transform: scale(1.5)
-            &:nth-child(4)
-                top: auto
-                bottom: 15%
-                left: 30%
-                transform: scale(1.5)
+	position: relative
+	display: grid
+	grid-template-columns: 1fr 1fr 1fr 1fr
+	margin-top: 10%
+	margin-bottom: 5%
+	counter-reset: counter
+	&::after
+		content: ''
+		display: block
+		+sz(100%, 200px)
+		+ps(absolute, (t, 297px), (l, 0))
+		background: url('../images/roadmap_line.svg') no-repeat 50%/contain
+	&__bg
+		+ps(absolute, (t, 0), (l, 0))
+		+sz(100%, 100%)
+		img
+			+ps(absolute, (t, 0), (l, 0))
+			display: block
+			object-fit: contain
 
+			&:first-child
+				left: 12%
+				top: 6%
+				max-width: 600px
+				width: 100%
+			&:nth-child(2)
+				right: 25%
+				left: auto
+				top: auto
+				bottom: 15%
+				transform: scale(1.5)
+			&:nth-child(3)
+				left: auto
+				right: 30%
+				top: 15%
+				transform: scale(1.5)
+			&:nth-child(4)
+				top: auto
+				bottom: 15%
+				left: 30%
+				transform: scale(1.5)
 
-    &__item 
-        position: relative
-        display: inline-flex
-        align-items: center
-        justify-content: flex-start
-        grid-row-start: 1
-        max-width: 305px
-        height: 293px
-        padding: 20px 40px
-        +theme(dark3)
-        border-radius: $brs
-        text-align: left
-        +ft(16, 24, 400)
-        overflow: hidden
-        &::before
-            counter-increment: counter
-            content: "Q " counter(counter)
-            +ps(absolute, (t, 0), (b, 0), (l, -150px), (r, auto))
-            margin: auto
-            +flex(flex, center, flex-start, nowrap)
-            font-weight: 600
-            font-size: 300px
-            line-height: 0.5
-            letter-spacing: -60px
-            white-space: nowrap
-            color: $grey3
-            opacity: 0.1
-        &::after
-            @extend %mask
-        &:hover::after
-            z-index: 0
-        &:nth-of-type(3)
-            grid-row-start: 1
-            grid-column-start: 3
-        &:nth-of-type(2), &:nth-of-type(4)
-            grid-row-start: 2
-            margin-top: 200px
-        &:nth-of-type(2)
-           grid-column-start: 2
-        &:nth-of-type(4)
-            grid-column-start: 4
+	&__item
+		position: relative
+		display: inline-flex
+		align-items: center
+		justify-content: flex-start
+		grid-row-start: 1
+		max-width: 305px
+		height: 293px
+		padding: 20px 40px
+		+theme(dark3)
+		border-radius: $brs
+		text-align: left
+		+ft(16, 24, 400)
+		overflow: hidden
+		&::before
+			counter-increment: counter
+			content: "Q " counter(counter)
+			+ps(absolute, (t, 0), (b, 0), (l, -150px), (r, auto))
+			margin: auto
+			+flex(flex, center, flex-start, nowrap)
+			font-weight: 600
+			font-size: 300px
+			line-height: 0.5
+			letter-spacing: -60px
+			white-space: nowrap
+			color: $grey3
+			opacity: 0.1
+		&::after
+			@extend %mask
+		&:hover::after
+			z-index: 0
+		&:nth-of-type(3)
+			grid-row-start: 1
+			grid-column-start: 3
+		&:nth-of-type(2), &:nth-of-type(4)
+			grid-row-start: 2
+			margin-top: 200px
+		&:nth-of-type(2)
+		   grid-column-start: 2
+		&:nth-of-type(4)
+			grid-column-start: 4
 
-    +maw($md)
-        display: flex
-        flex-wrap: wrap
-        justify-content: space-between
-        gap: 20px
+	+maw($md)
+		display: flex
+		flex-wrap: wrap
+		justify-content: space-between
+		gap: 20px
 
-        margin-top: 80px
-        margin-bottom: 0px
-        &::after
-            height: 100px
-            top: calc(50% - 50px)
-            background-position: 50% 50%
-        &__bg
-            img:first-child
-                left: 0
-                right: 0
-                margin: auto
-        &__item 
-            max-width: calc(50% - 20px)
-            height: auto
-            padding: 40px 30px
-            +ft(14, 14*1.5, 400)
-            &:nth-of-type(2)
-                margin-top: 0
-            &:nth-of-type(3),
-            &:nth-of-type(4)
-                margin-top: 80px
-    +maw(640)
-        margin-top: 40px
-        margin-bottom: 20px
-        &::after
-            display: none
-        &__bg
-            display: none
-        &__item
-            max-width: 100%
-            height: auto
-            padding: 20px
-            +ft(14, 14*1.5, 400)
-            &:nth-of-type(3),
-            &:nth-of-type(4)
-                margin-top: 0
+		margin-top: 80px
+		margin-bottom: 0px
+		&::after
+			height: 100px
+			top: calc(50% - 50px)
+			background-position: 50% 50%
+		&__bg
+			img:first-child
+				left: 0
+				right: 0
+				margin: auto
+		&__item
+			max-width: calc(50% - 20px)
+			height: auto
+			padding: 40px 30px
+			+ft(14, 14*1.5, 400)
+			&:nth-of-type(2)
+				margin-top: 0
+			&:nth-of-type(3),
+			&:nth-of-type(4)
+				margin-top: 80px
+	+maw(640)
+		margin-top: 40px
+		margin-bottom: 20px
+		&::after
+			display: none
+		&__bg
+			display: none
+		&__item
+			max-width: 100%
+			height: auto
+			padding: 20px
+			+ft(14, 14*1.5, 400)
+			&:nth-of-type(3),
+			&:nth-of-type(4)
+				margin-top: 0
 
 .section
-    &_socials
-        margin-top: $gap120
-        margin-bottom: $gap120
+	&_socials
+		margin-top: $gap120
+		margin-bottom: $gap120
 
-        h2
-            margin-bottom: 40px
+		h2
+			margin-bottom: 40px
 
-        +maw($sm)
-            margin-top: $gap120/2
-            margin-bottom: $gap120/2
-    &_subscribe
-        margin: 200px auto 170px
-        +maw(992)
-            margin-top: 120px
-        +maw(768)
-            margin-top: 60px
-            margin-bottom: 60px
+		+maw($sm)
+			margin-top: $gap120/2
+			margin-bottom: $gap120/2
+	&_subscribe
+		margin: 200px auto 170px
+		+maw(992)
+			margin-top: 120px
+		+maw(768)
+			margin-top: 60px
+			margin-bottom: 60px
 
 .box
-    position: relative
-    z-index: 1
-    +flex(flex, flex-end, flex-start, nowrap)
-    margin: 0 auto
-    padding: 50% 35px 30px
+	position: relative
+	z-index: 1
+	+flex(flex, flex-end, flex-start, nowrap)
+	margin: 0 auto
+	padding: 50% 35px 30px
+	text-align: left
+	user-select: none
 
-    text-align: left
+	@extend %box1
 
-    border-radius: 21px
-    background-image: url(../images/card_bg.svg)
-    background-repeat: no-repeat
-    background-size: cover
-    box-shadow: 0px 0px 75.6px -21px #4818B4
-    overflow: hidden
+	&__wrap
+		display: grid
+		grid-template-columns: repeat(auto-fit,minmax(calc(50% - 20px), 1fr))
+		gap: 20px
 
-    &::after
-        content: ''
-        +ps(absolute, (t, 0), (l, 0))
-        +sz(100%, 100%)
-        z-index: -1
-        background-image: linear-gradient(180deg,transparent 0%, rgba(#0D0D0D, 1) 75%)
+		+maw(778)
+			grid-template-columns: 1fr
 
-    &__wrap
-        display: grid
-        grid-template-columns: repeat(auto-fit,minmax(calc(50% - 20px), 1fr))
-        gap: 20px
+	&__title
+		margin-bottom: 8px
+		+ft(16, 25, 600, $ffHeading)
 
-        +maw(778)
-            grid-template-columns: 1fr
+	&__text
+		+flex(flex, flex-start, space-between, nowrap)
+		+ft(12, 12*1.3, 400, $ffText)
+		opacity: 0.8
 
-    &__title
-        margin-bottom: 8px
-        +ft(16, 25, 600, $ffHeading)
+		+maw(1200)
+			flex-wrap: wrap
 
-    &__text
-        +flex(flex, flex-start, space-between, nowrap)
-        +ft(12, 12*1.3, 400, $ffText)
-        opacity: 0.8
+			& > div
+				margin-bottom: 20px
 
-        +maw(1200)
-            flex-wrap: wrap
+	&__btn
+		position: relative
+		+flex(flex, center, center, nowrap)
+		align-self: flex-end
+		padding: 10px 35px
+		min-width: 150px
+		height: 35px
 
-            & > div
-                margin-bottom: 20px
+		white-space: nowrap
+		+ft(15, 16, 600, $ffHeading)
 
-    &__btn
-        position: relative
-        +flex(flex, center, center, nowrap)
-        align-self: flex-end
-        padding: 10px 35px
-        min-width: 150px
-        height: 35px
+		border-radius: 10px
+		box-shadow: $bxsd3
 
-        white-space: nowrap
-        +ft(15, 16, 600, $ffHeading)
+		&:hover, &:focus, &:active
+			&:not( &[disabled="disabled"])
+				box-shadow: $bxsd5
 
-        border-radius: 10px
-        box-shadow: 0 1px 0 1px #AA30E3, 0 -1px 0 1px #4E00F9
-        
+		&[disabled="disabled"]
+			opacity: 0.4
+			box-shadow: $bxsd6
 
-        &:hover, &:focus, &:active
-            &:not( &[disabled="disabled"])
-                box-shadow: 0 1px 0 1px #4E00F9, 0 -1px 0 1px #AA30E3
-                
-
-        &[disabled="disabled"]
-            opacity: 0.4
-            box-shadow: 0 1px 0 1px #AA30E3, 0 -1px 0 1px #4E00F9
-            
-
-    &__icon
-        +ps(absolute, (t, 0), (l, 0), (r, 0))
-        z-index: -1
-        +sz(100%, 100%)
-        img
-            display: block
-            +ps(absolute, (t, 0), (l, 0), (r, 0))
-            margin: auto
-            +sz(100%, 100%)
-            max-width: 80%
-            //max-height: 50vmax
-            object-fit: contain
-            object-position: center 15%
+	&__icon
+		+ps(absolute, (t, 0), (l, 0), (r, 0))
+		z-index: -1
+		+sz(100%, 100%)
+		img
+			display: block
+			+ps(absolute, (t, 0), (l, 0), (r, 0))
+			margin: auto
+			+sz(100%, 100%)
+			max-width: 80%
+			//max-height: 50vmax
+			object-fit: contain
+			object-position: center 15%
