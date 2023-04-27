@@ -151,6 +151,8 @@ function sendRegForm() {
         .then((response) => response.json())
         .then((data) => {
             console.log(data);
+
+            show_form_send()
         })
         .catch((error) => console.error(error));
 }
@@ -214,12 +216,11 @@ const forms = document.querySelectorAll(".needs-validation");
 
                         emailData.emails.push(data);
                         //alert(emailData.emails[0].email + emailData.emails[0].variables.password);
-
-
                         sendRegForm();
-
-
-                        //form.reset();
+                        
+                        // show_success_modal();
+                        //setTimeout(window.location.replace("/"), 4000);
+                        //setTimeout(form.reset(), 1500);
                     }
                 }
             },
@@ -233,8 +234,8 @@ const forms = document.querySelectorAll(".needs-validation");
 const form_login = document.querySelector(".from-validation");
 const form_login_btn = document.querySelector(".from-validation .btn");
 
-form_login_btn.addEventListener(
-    "click",
+form_login.addEventListener(
+    "submit",
     function (event) {
         this.closest(".from-validation").classList.add("was-validated");
         if (!this.checkValidity()) {
@@ -252,7 +253,7 @@ form_login_btn.addEventListener(
                 //alert(login_email);
                 //alert(login_password);
                 getAuthData(login_email, login_password);
-                //form_login.reset();
+                //setTimeout(form_login.reset(), 1500);
             }
         }
     },
@@ -400,26 +401,32 @@ const formSend = document.querySelector("#modalSuccessSend");
 let check_form_send = getCookie("form_send");
 let form_send_close = formSend.querySelector(".modal-close");
 
-if (check_form_send === "true") {
-    formSend.classList.add('d-block', 'show');
-} else {
-    formSend.classList.remove('d-block', 'show');
+function show_form_send(){
+
 };
 
+if (check_form_send) {
+    if (check_form_send === "true") {
+        formSend.classList.add('d-block', 'show');
+
+    } else {
+        formSend.classList.remove('d-block', 'show');
+};
 form_send_close.addEventListener('click', function () {
     removeCookie("form_send");
-    //window.location.replace("/");
+    window.location.replace("/");
 });
 
 formSend.addEventListener("click", function (e) {
     removeCookie("form_send");
+    window.location.replace("/");
 });
+};
 
 
 //USER CLICK ON LINK INSIDE EMAIL
 const urlParams = new URLSearchParams(window.location.search);
 const emailParam = urlParams.get('email');
-
 
 const formEmailClicked = document.querySelector("#modalEmailClicked");
 const formEmailClicked_btn = formEmailClicked.querySelector(".btn");
@@ -441,7 +448,7 @@ formEmailClicked_btn.addEventListener('click', function (event) {
 });
 formEmailClicked_close.addEventListener('click', function () {
     removeCookie("email_confirm");
-    //window.location.replace("/");
+    window.location.replace("/");
     urlParams.delete('email');
     const newUrl = window.location.origin + window.location.pathname + '?' + urlParams.toString();
     window.history.replaceState(null, null, newUrl);
@@ -449,7 +456,7 @@ formEmailClicked_close.addEventListener('click', function () {
 formEmailClicked.addEventListener("click", function (event) {
     if (event.target === formEmailClicked) {
         removeCookie("email_confirm");
-        //window.location.replace("/");
+        //window.location.replace("/"); NOT needed
     }
 });
 
