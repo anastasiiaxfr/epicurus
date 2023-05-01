@@ -1,13 +1,10 @@
 header
     width: 100%
-    position: relative
-    margin: 0
-
 .navbar
-    //+ps(absolute, (t, 0), (l, 0))
+    +ps(absolute, (t, 0), (l, 0))
     width: 100%
     padding-top: $gap40
-    //padding-bottom: $gap40
+    padding-bottom: $gap40
     &-menu
         +flex(flex, center, space-between, wrap)
         width: 100%
@@ -15,8 +12,7 @@ header
         width: 100%
     &-toggler
         padding: 0
-        &:hover, &:focus, &:active
-            box-shadow: none
+    &-toggler
         &-open, &-close 
             fill: $grey1
         &-close
@@ -42,18 +38,6 @@ header
         .lang-switcher
             button
                 width: 100%
-
-    +maw(460)
-        .logo img
-            +sz(60px, 60px)
-
-        #sign-in, #sign-up
-            padding: 0 5px
-            background: transparent
-            backdrop-filter: none
-        
-        .navbar-toggler
-            margin-left: 10px
         
     +maw($xs)
         position: relative
@@ -67,11 +51,8 @@ header
 .nav
     &-item
         margin-right: $gap40
-        // &:last-of-type
-        //     margin-right: 0
-
     &-link
-        color: inherit   
+        color: $grey1    
         &:hover, &:active, &:focus
             color: $white
     +maw($md)
@@ -92,7 +73,7 @@ header
         padding-bottom: 10px
         padding-top: 60px
         text-align: center 
-        +ft(12, 14, 400, $ffText)  
+        +ft(12, 14, 700)  
     &__top
         +flex(flex, flex-start, space-between, wrap)  
         +maw($lg)
@@ -111,12 +92,11 @@ header
         li 
             a
                 display: block
-                +ft(14, 18, 400, $ffText)
+                +ft(16, 18, 400)
                 padding: 7px 0
             &:hover, &:focus, &:active
                 a
-                    color: inherit
-                    text-decoration: underline
+                    color: $white
     +maw($lg)
         &__nav
             width: 80%

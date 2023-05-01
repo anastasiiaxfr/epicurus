@@ -16,7 +16,7 @@
 {{ $description = $description | append .Params.description_after }}
 {{ $description = delimit $description " " }}
 {{ else }}
-{{ $description = .Params.description | or .Site.Params.description }}
+{{ $description = .Params.description }}
 {{ end }}
 
 <meta charset="utf-8">
@@ -26,7 +26,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
-<meta name="author" content="{{ .Site.Params.author }} && {{ .Site.Params.develop }}">
+{{ with .Site.Params.author }}
+<meta name="author" content="{{ . }}">{{ end }}
 {{ hugo.Generator }}
 
 <!-- canonical link tag -->
@@ -38,38 +39,42 @@
 <meta property="og:title" content="{{ $title | truncate 60 }}">
 <meta property="og:description" content="{{ $description | truncate 160 }}">
 
-<meta property="og:image:height" content="600">
-<meta property="og:image:width" content="314">
-<meta property="og:image" content="{{ `images/og.jpg` | relURL }}">
+<meta property="og:image:height" content="...">
+<meta property="og:image:width" content="...">
+<meta property="og:image" content="fav/screenshot.jpg">
 
 <meta property="fb:app_id" content="...">
 <meta property="fb:admins" content="{{ .Site.Params.author }}">
 
 <meta property="og:type" content="website" />
-<meta property="og:site_name" content="{{ .Site.Params.site_name }}">
+<meta property="og:site_name" content="{{ .Site.Title }}">
 <meta property="og:url" content="{{ .Permalink }}">
 
+<meta name="twitter:title" content="{{ .Site.Title }}" />
+<meta name="twitter:url" content="{{ .Permalink }}" />
+<meta name="twitter:image" content="fav/screenshot.jpg" />
+<meta name="twitter:card" content="" />
 {{ end }}
 
 <!-- THE TWITTER MACHINE -->
-<meta name="twitter:card" content="summary">
-<meta name="twitter:url" content="{{ .Permalink }}" />
-<meta name="twitter:site" content="{{ .Site.Params.site_url }}">
+<meta name="twitter:card" content="...">
+
+<meta name="twitter:site" content="{{ .Permalink }}">
 <meta name="twitter:creator" content="{{ .Site.Params.author }}">
+
 <meta name="twitter:title" content="{{ $title | truncate 60 }}">
 <meta name="twitter:description" content="{{ $description | truncate 160 }}">
-<meta name="twitter:image" content="{{ `images/og.jpg` | relURL }}" />
+<meta name="twitter:image:src" content="...">
 
 
 <!-- G++ -->
-<meta itemprop="name" content="{{  $title | truncate 60 }}">
+<meta itemprop="name" content="{{ .Permalink }}">
 <meta itemprop="description" content="{{ $description | truncate 60 }}">
-<meta itemprop="image" content="{{  `images/og.jpg` | relURL }}">
+<meta itemprop="image" content="...">
 
 
-
-<link href="{{ `fav/favicon.ico` | relURL }}" rel="shortcut icon" type="image/x-icon" />
-<link href="{{ `fav/favicon.ico` | relURL }}" rel="icon" type="image/x-icon" />
+<link href="fav/minilogo.ico" rel="shortcut icon" type="image/x-icon" />
+<link href="fav/minilogo.ico" rel="icon" type="image/x-icon" />
 
 <!--Favicon-->
 <link rel="shortcut icon" href="{{ `fav/favicon.png` | relURL }}" type="image/x-icon">

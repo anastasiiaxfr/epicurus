@@ -1,7 +1,7 @@
 baseURL = "/"
 # canonifyURLs = true
 defaultContentLanguage = "en"
-disableLanguages = ["ua"]
+disableLanguages = []
 paginate = "6"
 relativeURLs = true
 summaryLength = "50"
@@ -82,16 +82,14 @@ enableRobotsTXT = true
 CIO_site_id = "XXX"
 GTM = "GTM-WHBQ3BV"
 develop = "Anastasiia_Berest"
-author = "Epicurus"
 
 logo = "images/logo.svg"
 logo_dark = "images/logo.svg"
 logo_w = "116"
 
 site_name = "epicurus"
-site_url = "https://itg-epicurus.netlify.app/"
+site_url = "epicurus.com"
 
-description = "An innovative platform for investors, people, enthusiasts"
 
 [[params.plugins.js]]
 link = "plugins/js/jquery.min.js"
@@ -152,11 +150,11 @@ icon_sm = "tk"
 
 [[params.social]]
 label = "rd"
-title = "Medium"
+title = "Reddit"
 link = "#"
-icon = "medium" 
-icon_h = "medium-h"
-icon_sm = "md"
+icon = "reddit" 
+icon_h = "reddit-h"
+icon_sm = "rd"
 soc = "false"
 
 [[params.social]]

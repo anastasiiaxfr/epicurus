@@ -11,22 +11,21 @@
 {{ "<!-- End of Hero Section -->" | safeHTML }}
 
 <article class="hero__wrap">
+    <div class="hero__bg">
+        <img src="{{ `images/bg3.svg` | relURL }}" alt="ALT" width="100" height="100">
+        <img src="{{ `images/bg4.svg` | relURL }}" alt="ALT" width="402" height="402">
+    </div>
     {{- partial "header.html" . -}}
 
     {{- partial "_hero.html" . -}}
 </article>
 
 <!-- BEGIN section -->
-{{- partial "_modals.html" . -}}
-<!-- END section -->
-
-
-<!-- BEGIN section -->
-{{- partial "_home-sec-3.html" . -}}
+{{- partial "_home-sec-1.html" . -}}
 <!-- END section -->
 
 <!-- BEGIN section -->
-<!-- {{- partial "_home-sec-2.html" . -}} -->
+{{- partial "_home-sec-2.html" . -}}
 <!-- END section -->
 
 <!-- BEGIN section -->
@@ -36,7 +35,5 @@
 <!-- BEGIN section -->
 {{- partial "_socials.html" . -}}
 <!-- END section -->
-
-
 
 {{ end }}

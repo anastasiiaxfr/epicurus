@@ -6,6 +6,7 @@ html, body
 
 body
 	background-color: $white
+    user-select: none
 	&::-webkit-scrollbar
 		width: 10px
 		height: 10px
@@ -18,9 +19,8 @@ body
 
 
 *
-	//user-select: none
 	&::selection
-		background-color: $white
+		background-color: $magenta
 
 
 a
@@ -29,9 +29,6 @@ a
 	&:hover, &:focus
 		text-decoration: none
 		color: $black
-
-img
-    user-select: none
 
 button, a, input 
 	&:hover, &:active, &:focus

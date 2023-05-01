@@ -3,8 +3,7 @@
 		<div class="container">
 			
 			{{ .Scratch.Set "img" .Site.Params.logo }}
-			{{ .Scratch.Set "logo_h" "65" }}
-			{{ .Scratch.Set "logo_w" "52" }}
+			{{ .Scratch.Set "logo_h" "24" }}
 			{{- partial "_logo.html" . -}}
 
 			<div class="collapse navbar-collapse order-1" id="navbarSupportedContent">
@@ -38,14 +37,9 @@
 
 					<div class="d-flex">
 
-						<div class="d-none d-lg-flex align-items-center">
-							
-                            {{- partial "_switcher.html" . -}}
-                          
-
-							{{- partial "_lang.html" . -}}
+						<div class="d-none d-lg-flex">
 							{{- partial "_btn-auth.html" . -}}
-							
+							{{- partial "_lang.html" . -}}
 						</div>
 
 					</div>
@@ -75,7 +69,3 @@
 		</div>
 	</nav>
 </header>
-
-<!-- BEGIN section -->
-{{- partial "_modals.html" . -}}
-<!-- END section -->
