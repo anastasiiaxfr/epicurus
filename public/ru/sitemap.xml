@@ -2,376 +2,12 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>/ru/</loc>
-    <lastmod>2021-10-11T21:00:00+00:00</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="/en/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="ua"
-                href="/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="ru"
-                href="/ru/"
-                />
-  </url><url>
-    <loc>/ru/news/news4/</loc>
-    <lastmod>2021-10-11T21:00:00+00:00</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="/en/news/news4/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="ua"
-                href="/news/news4/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="ru"
-                href="/ru/news/news4/"
-                />
-  </url><url>
-    <loc>/ru/news/</loc>
-    <lastmod>2021-10-11T21:00:00+00:00</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="/en/news/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="ua"
-                href="/news/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="ru"
-                href="/ru/news/"
-                />
-  </url><url>
-    <loc>/ru/cases/case1/</loc>
-    <lastmod>2019-11-14T13:39:07+06:00</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="/en/cases/case1/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="ua"
-                href="/cases/case1/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="ru"
-                href="/ru/cases/case1/"
-                />
-  </url><url>
-    <loc>/ru/cases/case2/</loc>
-    <lastmod>2019-11-14T13:39:07+06:00</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="/en/cases/case2/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="ua"
-                href="/cases/case2/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="ru"
-                href="/ru/cases/case2/"
-                />
-  </url><url>
-    <loc>/ru/cases/case3/</loc>
-    <lastmod>2019-11-14T13:39:07+06:00</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="/en/cases/case3/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="ua"
-                href="/cases/case3/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="ru"
-                href="/ru/cases/case3/"
-                />
-  </url><url>
-    <loc>/ru/cases/amy-goldberg-copy/</loc>
-    <lastmod>2019-11-14T07:39:07+00:00</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url><url>
-    <loc>/ru/cases/</loc>
-    <lastmod>2019-11-14T07:39:07+00:00</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="/en/cases/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="ua"
-                href="/cases/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="ru"
-                href="/ru/cases/"
-                />
-  </url><url>
-    <loc>/ru/products/</loc>
-    <lastmod>2019-11-13T07:39:07+00:00</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="/en/products/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="ua"
-                href="/products/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="ru"
-                href="/ru/products/"
-                />
-  </url><url>
-    <loc>/ru/products/product1/</loc>
-    <lastmod>2019-11-13T13:39:07+06:00</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="/en/products/product1/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="ua"
-                href="/products/product1/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="ru"
-                href="/ru/products/product1/"
-                />
-  </url><url>
-    <loc>/ru/products/product2/</loc>
-    <lastmod>2019-11-13T13:39:07+06:00</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="/en/products/product2/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="ua"
-                href="/products/product2/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="ru"
-                href="/ru/products/product2/"
-                />
-  </url><url>
-    <loc>/ru/products/product5/</loc>
-    <lastmod>2019-11-13T13:39:07+06:00</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="/en/products/product5/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="ua"
-                href="/products/product5/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="ru"
-                href="/ru/products/product5/"
-                />
-  </url><url>
-    <loc>/ru/products/product6/</loc>
-    <lastmod>2019-11-13T13:39:07+06:00</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="/en/products/product6/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="ru"
-                href="/ru/products/product6/"
-                />
-  </url><url>
-    <loc>/ru/products/product4/</loc>
-    <lastmod>2019-11-13T13:39:07+06:00</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="/en/products/product4/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="ua"
-                href="/products/product4/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="ru"
-                href="/ru/products/product4/"
-                />
-  </url><url>
-    <loc>/ru/products/product3/</loc>
-    <lastmod>2019-11-13T13:39:07+06:00</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="/en/products/product3/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="ua"
-                href="/products/product3/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="ru"
-                href="/ru/products/product3/"
-                />
-  </url><url>
-    <loc>/ru/products/%D0%BB%D0%B5%D0%BA%D1%82%D0%BE%D1%80%D0%B8%D0%B9/</loc>
-    <lastmod>2019-11-13T07:39:07+00:00</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="/en/products/%D0%BB%D0%B5%D0%BA%D1%82%D0%BE%D1%80%D0%B8%D0%B9/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="ua"
-                href="/products/%D0%BB%D0%B5%D0%BA%D1%82%D0%BE%D1%80%D0%B8%D0%B9/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="ru"
-                href="/ru/products/%D0%BB%D0%B5%D0%BA%D1%82%D0%BE%D1%80%D0%B8%D0%B9/"
-                />
-  </url><url>
-    <loc>/ru/products/copy/</loc>
-    <lastmod>2019-11-13T07:39:07+00:00</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="/en/products/copy/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="ua"
-                href="/products/copy/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="ru"
-                href="/ru/products/copy/"
-                />
-  </url><url>
-    <loc>/ru/news/news3/</loc>
-    <lastmod>2019-10-14T13:39:07+06:00</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="/en/news/news3/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="ua"
-                href="/news/news3/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="ru"
-                href="/ru/news/news3/"
-                />
-  </url><url>
-    <loc>/ru/authors/</loc>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="/en/authors/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="ua"
-                href="/authors/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="ru"
-                href="/ru/authors/"
-                />
-  </url><url>
     <loc>/ru/categories/</loc>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="/en/categories/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="ua"
                 href="/categories/"
                 />
     <xhtml:link
@@ -380,23 +16,18 @@
                 href="/ru/categories/"
                 />
   </url><url>
-    <loc>/ru/podpiski/</loc>
+    <loc>/ru/</loc>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="/en/podpiski/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="ua"
-                href="/podpiski/"
+                href="/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="ru"
-                href="/ru/podpiski/"
+                href="/ru/"
                 />
   </url><url>
     <loc>/ru/policy/</loc>
@@ -405,11 +36,6 @@
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="/en/policy/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="ua"
                 href="/policy/"
                 />
     <xhtml:link
@@ -424,11 +50,6 @@
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="/en/about/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="ua"
                 href="/about/"
                 />
     <xhtml:link
@@ -437,61 +58,32 @@
                 href="/ru/about/"
                 />
   </url><url>
-    <loc>/ru/indicatory/</loc>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="/en/indicatory/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="ua"
-                href="/indicatory/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="ru"
-                href="/ru/indicatory/"
-                />
-  </url><url>
-    <loc>/ru/journal/</loc>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="/en/journal/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="ua"
-                href="/journal/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="ru"
-                href="/ru/journal/"
-                />
-  </url><url>
     <loc>/ru/tags/</loc>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="/en/tags/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="ua"
                 href="/tags/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="ru"
                 href="/ru/tags/"
+                />
+  </url><url>
+    <loc>/ru/academy/</loc>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="/academy/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="ru"
+                href="/ru/academy/"
                 />
   </url>
 </urlset>

@@ -1,3 +1,5 @@
+document.addEventListener('DOMContentLoaded', function() {
+
 //MENU TOGGLE
 let navbar_toggle = document.querySelector('.navbar-toggler');
 let navbar_toggle_open = document.querySelector('.navbar-toggler-open');
@@ -76,7 +78,7 @@ function removeCookie(name) {
     document.cookie = name + "=; Max-Age=-99999999;";
 }
 
-// SWITCHER
+//SWITCHER
 if (getCookie("theme") === "white") {
     $("body").addClass("white");
     $(".switch input[type=checkbox]").prop("checked", true);
@@ -100,10 +102,53 @@ $(".switch input[type=checkbox]").change(function () {
     }
 });
 
-// SEND to SendPulse
-const addressBookId = '559464';
-const id = '157600cc58dd5e8f4d79d3777b0672ee';
-const secret = '01bc431ae54607949cdbb457e723ed7e';
+//FIREBASE
+// const apiKey = document.querySelector('head').dataset.fb_api_key;
+// const authDomain = document.querySelector('head').dataset.fb_auth_domain;
+// const databaseURL = document.querySelector('head').dataset.fb_db_url;
+// const projectId = document.querySelector('head').dataset.fb_project_id;
+// const storageBucket = document.querySelector('head').dataset.fb_storage;
+// const messagingSenderId = document.querySelector('head').dataset.fb_messaging;
+// const appId = document.querySelector('head').dataset.fb_app_id;
+
+const firebaseConfig = {
+    apiKey: apiKey,
+    authDomain: authDomain,
+    databaseURL: databaseURL,
+    projectId: projectId,
+    storageBucket: storageBucket,
+    messagingSenderId: messagingSenderId,
+    appId: appId
+  };
+
+  // Initialize Firebase
+  const app = firebase.initializeApp(firebaseConfig);
+  const auth = firebase.auth();
+
+//FIREBASE LOGIN
+const signIn = (email, password) => {
+    
+    auth.signInWithEmailAndPassword(email, password)
+      .then((userCredential) => {
+        // Sign-in successful
+        const user = userCredential.user;
+        alert("User signed in:", user);
+        // Perform any necessary actions after sign-in
+        check_login_from(true)
+      })
+      .catch((error) => {
+        // Handle sign-in errors
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        console.error("Sign-in error:", errorCode, errorMessage);
+        check_login_from(false)
+      });
+};
+
+//SEND to SendPulse
+const addressBookId = document.querySelector('head').dataset.sp_addressbook_id;
+const id = document.querySelector('head').dataset.sp_id;
+const secret = document.querySelector('head').dataset.sp_secret;
 
 
 function getKey() {
@@ -157,40 +202,14 @@ function sendRegForm() {
         .catch((error) => console.error(error));
 }
 
-//LOGIN_SENDPULSE
-let check_login_true;
-function getAuthData(login_email, login_password) {
-    fetch(apiUrl, {
-        method: "GET",
-        headers: {
-            Authorization: `Bearer ${access_token}`
-        }
-    })
-        .then(response => response.json())
-        .then(data => {
-
-            const subscriber = data.find(subscriber => subscriber.email === login_email && subscriber.variables.password === login_password);
-            if (subscriber) {
-                //alert(true);
-                check_login_true = true;
-                check_login_from(check_login_true);
-            } else {
-                //alert(false);
-                check_login_true = false;
-                check_login_from(check_login_true);
-            }
-        })
-        .catch(error => console.error(error));
-}
-
 //FORMS SEND DATA
-// Fetch all the forms we want to apply custom Bootstrap validation styles to
+//Fetch all the forms we want to apply custom Bootstrap validation styles to
 const forms = document.querySelectorAll(".needs-validation");
 
 (function () {
     "use strict";
 
-    // Loop over them and prevent submission
+    //Loop over them and prevent submission
     Array.prototype.slice.call(forms).forEach(function (form) {
         form.addEventListener(
             "submit",
@@ -218,7 +237,7 @@ const forms = document.querySelectorAll(".needs-validation");
                         //alert(emailData.emails[0].email + emailData.emails[0].variables.password);
                         sendRegForm();
                         
-                        // show_success_modal();
+                        //show_success_modal();
                         //setTimeout(window.location.replace("/"), 4000);
                         //setTimeout(form.reset(), 1500);
                     }
@@ -241,18 +260,22 @@ form_login.addEventListener(
         if (!this.checkValidity()) {
             event.preventDefault();
             event.stopPropagation();
+            
         } else {
             event.preventDefault()
             event.stopPropagation()
 
             const emailInput = this.closest(".from-validation").querySelector('input[type="email"]');
             const passwordInput = this.closest(".from-validation").querySelector('input[type="password"]');
+           
+            
             if (emailInput && passwordInput) {
-                login_email = emailInput.value;
-                login_password = passwordInput.value;
+                let login_email = emailInput.value;
+                let login_password = passwordInput.value;
                 //alert(login_email);
                 //alert(login_password);
-                getAuthData(login_email, login_password);
+                signIn(login_email, login_password)
+                //getAuthData(login_email, login_password);
                 //setTimeout(form_login.reset(), 1500);
             }
         }
@@ -261,7 +284,7 @@ form_login.addEventListener(
 );
 
 
-// FORM
+//FORM
 const password = document.querySelector("#reg_password");
 const password_login = document.querySelector("#login_password");
 const password_reset = document.querySelector("#reset_password");
@@ -377,6 +400,7 @@ function set_login_form() {
     window.location.href = "https://www.google.com/";
 };
 
+//FORM RESET
 function reset_login_form() {
     formLogin_error.classList.add("d-block");
     formLogin_fields.forEach(i => {
@@ -461,7 +485,7 @@ formEmailClicked.addEventListener("click", function (event) {
 });
 
 
-// MODAL (FIXME https://getbootstrap.com/docs/5.0/components/modal/#toggle-between-modals)
+//MODAL (FIXME https://getbootstrap.com/docs/5.0/components/modal/#toggle-between-modals)
 const modal = document.querySelectorAll(".modal");
 const modal_toggle = document.querySelectorAll(
     '.modal [data-bs-toggle="modal"]'
@@ -515,3 +539,4 @@ modal_close.forEach(function (ell) {
     });
 });
 
+});
