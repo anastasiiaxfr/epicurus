@@ -111,6 +111,8 @@ $(".switch input[type=checkbox]").change(function () {
 // const messagingSenderId = document.querySelector('head').dataset.fb_messaging;
 // const appId = document.querySelector('head').dataset.fb_app_id;
 
+
+
 const firebaseConfig = {
     apiKey: apiKey,
     authDomain: authDomain,

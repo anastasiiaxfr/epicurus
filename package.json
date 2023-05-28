@@ -1,0 +1,14 @@
+{
+  "name": "epicurus-lp",
+  "version": "1.0.0",
+  "description": "",
+  "main": "webpack.config.js",
+  "scripts": {
+    "start": "concurrently 'hugo server' 'webpack --watch'"
+  },
+  "author": "anastasiia_berest",
+  "license": "ISC",
+  "dependencies": {
+    "dotenv": "^16.0.3"
+  }
+}

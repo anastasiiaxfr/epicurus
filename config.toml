@@ -81,6 +81,19 @@ Priority = 0.6
 Weight = [["main", "1"], ["sub2", "0.8"], ["sub3", "0.6"]]
 enableRobotsTXT = true
 
+
+[security]
+  enableInlineShortcodes = false
+  [security.exec]
+    allow = ['^dart-sass-embedded$', '^go$', '^npx$', '^postcss$']
+    osEnv = ['(?i)^((HTTPS?|NO)_PROXY|PATH(EXT)?|APPDATA|TE?MP|TERM|GO\w+)$']
+  [security.funcs]
+    getenv = ['^HUGO_', '^CI$']
+  [security.http]
+    methods = ['(?i)GET|POST']
+    urls = ['.*']
+
+
 [params]
 environment = "production"
 CIO_site_id = "XXX"
