@@ -82,6 +82,7 @@ Weight = [["main", "1"], ["sub2", "0.8"], ["sub3", "0.6"]]
 enableRobotsTXT = true
 
 [params]
+environment = "production"
 CIO_site_id = "XXX"
 GTM = "GTM-WHBQ3BV"
 develop = "Anastasiia_Berest"

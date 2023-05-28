@@ -4,4 +4,4 @@ set -a
 source <(godotenv)
 set +a
 
-hugo
+hugo --gc --minify

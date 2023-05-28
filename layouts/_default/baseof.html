@@ -39,7 +39,7 @@ console.log('apiKey', apiKey);
 
 
 <script>
-  const apiKeyN = "{{ .Env.FIREBASE_API_KEY }}";
+  const apiKeyN = "{{ .Site.Params.environment.FIREBASE_API_KEY }}";
   // Use the 'apiKey' variable in your JavaScript code
   console.log('apiKeyN', apiKeyN);
 </script>
