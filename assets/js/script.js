@@ -102,17 +102,28 @@ $(".switch input[type=checkbox]").change(function () {
     }
 });
 
+//GENERATE JWT TOKEN
+const getToken = async (token) => {
+    
+    const jwt = 'https://jwtecho.pixegami.io';
+    const certStr =
+      "-----BEGIN CERTIFICATE-----\nMIIDHTCCAgWgAwIBAgIJAOSiZ8/teEIgMA0GCSqGSIb3DQEBBQUAMDExLzAtBgNV\nBAMMJnNlY3VyZXRva2VuLnN5c3RlbS5nc2VydmljZWFjY291bnQuY29tMB4XDTIz\nMDUyMjA5MzkzMVoXDTIzMDYwNzIxNTQzMVowMTEvMC0GA1UEAwwmc2VjdXJldG9r\nZW4uc3lzdGVtLmdzZXJ2aWNlYWNjb3VudC5jb20wggEiMA0GCSqGSIb3DQEBAQUA\nA4IBDwAwggEKAoIBAQDVa5tRVVAWGZFRze9/YQZcXyVXLjvyU+DK1EkmZwYOe30D\nsw/fov5g34upphGLYsN6oZAp8kjiRPUBUhdBodZfeIIfgbcAGsfQ0OLPeWliIq1S\npQb9e2j4c58bsb5uotqyBC2CAmNrBmU0ASYLYAVf/+gSzfZPNBrcYuWlf8/+P+9Z\nEMy/gWb/bUSrKxAasoDDLLxNWGYQ0omOPCQsjyQxdJlmYfgWetemJ442TLkNcJ9R\nBb0KkBu4QKaBBmheIb38/VnIMH2/oe21UsD4u4tJpYbqff8gAuU6ql8gXHlClYF0\nBpbx5W0l3hqlsUN43EFQcixTt+7jT3GrsERlQPw3AgMBAAGjODA2MAwGA1UdEwEB\n/wQCMAAwDgYDVR0PAQH/BAQDAgeAMBYGA1UdJQEB/wQMMAoGCCsGAQUFBwMCMA0G\nCSqGSIb3DQEBBQUAA4IBAQDHsfCD+bnyOFZ2h0ETUss/EZgOjhEdklZwAI1OebgW\nhQ0neV33Fa4MNe2sIGMFCHPLLEY9KWaQPqz5asIiWB05NejSyzQsrv3Qll4/eUn1\nInnYGksFh/i5Bni6unem0Y7gik1Z9HFH7dFk82X2v8c+9F/44dXbbzIEDG430vn6\nVONeT3/bf8+B89hVqhjEufCIt7TohSG1Hy8I7ZbOHrKku5UpVpq0yfVXN7vh2vt8\nJLPAwYXQA+A2XbHRRPlvnKOTozPn57P+5X7W2WxCfh2Dr7f6dEy2E2yX+eoXW2gz\nbllJ13HWd00ZWtukwJU9I/GKh2JtTemWQ+5Hh48aBzEG\n-----END CERTIFICATE-----\n";
+    const encodedCertStr = encodeURIComponent(certStr);
+    const audience = projectId;
+    const verificationEndpoint = `${jwt}/verify?audience=${audience}&cert_str=${encodedCertStr}`;
+
+    const requestInfo = {
+        headers: {
+          Authorization: "Bearer " + token + "xx",
+        }
+    };
+    const response = await fetch(jwt, requestInfo);
+    const responseBody = await response.json();
+    console.log('responseBody', responseBody);
+    
+}
+
 //FIREBASE
-// const apiKey = document.querySelector('head').dataset.fb_api_key;
-// const authDomain = document.querySelector('head').dataset.fb_auth_domain;
-// const databaseURL = document.querySelector('head').dataset.fb_db_url;
-// const projectId = document.querySelector('head').dataset.fb_project_id;
-// const storageBucket = document.querySelector('head').dataset.fb_storage;
-// const messagingSenderId = document.querySelector('head').dataset.fb_messaging;
-// const appId = document.querySelector('head').dataset.fb_app_id;
-
-
-
 const firebaseConfig = {
     apiKey: apiKey,
     authDomain: authDomain,
@@ -126,38 +137,37 @@ const firebaseConfig = {
   // Initialize Firebase
   const app = firebase.initializeApp(firebaseConfig);
   const auth = firebase.auth();
+  firebase.auth().setPersistence(firebase.auth.Auth.Persistence.LOCAL);
+
 
 //FIREBASE LOGIN
-const signIn = (email, password) => {
-    
-    auth.signInWithEmailAndPassword(email, password)
-      .then((userCredential) => {
-        // Sign-in successful
+const signIn = async (email, password) => {
+    try {
+        const userCredential = await auth.signInWithEmailAndPassword(email, password);
         const user = userCredential.user;
-        alert("User signed in:", user);
-        // Perform any necessary actions after sign-in
-        check_login_from(true)
-      })
-      .catch((error) => {
+        const idToken = await user.getIdToken();
+        getToken(idToken);
+        check_login_from(true);
+        // console.log(idToken)
+
+        window.location.href = redirect_url;
+        
+      }
+      catch(error){
         // Handle sign-in errors
         const errorCode = error.code;
         const errorMessage = error.message;
         console.error("Sign-in error:", errorCode, errorMessage);
         check_login_from(false)
-      });
+      };
 };
 
 //SEND to SendPulse
-const addressBookId = document.querySelector('head').dataset.sp_addressbook_id;
-const id = document.querySelector('head').dataset.sp_id;
-const secret = document.querySelector('head').dataset.sp_secret;
-
-
 function getKey() {
     const accessData = {
         "grant_type": "client_credentials",
-        "client_id": id,
-        "client_secret": secret
+        "client_id": sp_id,
+        "client_secret": sp_secret
     };
 
     const requestOptions = {
@@ -174,7 +184,7 @@ function getKey() {
         .catch(error => console.error(error));
 }
 
-const apiUrl = `https://api.sendpulse.com/addressbooks/${addressBookId}/emails`;
+const apiUrl = `https://api.sendpulse.com/addressbooks/${sp_addressBookId}/emails`;
 
 const emailData = {
     emails: [],
@@ -399,7 +409,7 @@ function set_login_form() {
         i.setCustomValidity("");
         i.classList.remove("is-invalid");
     });
-    window.location.href = "https://www.google.com/";
+    //window.location.href = redirect_url;
 };
 
 //FORM RESET
@@ -470,7 +480,7 @@ if (email_confirm === "true") {
 formEmailClicked_btn.addEventListener('click', function (event) {
     event.preventDefault();
     removeCookie("email_confirm");
-    window.location.href = "https://www.google.com/";
+    window.location.href = redirect_url;
 });
 formEmailClicked_close.addEventListener('click', function () {
     removeCookie("email_confirm");
