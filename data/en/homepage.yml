@@ -53,33 +53,33 @@ section_solutions:
   sub_title: We spend energy on improving the understanding of how cryptocurrencies work and its daily use.
   items:
     - img: 'images/solution1.png'
-      title:  Роботизированная торговля
-      description: Роботизированная торговля, которая позволяет инвесторам торговать на рынке криптовалют без необходимости постоянного мониторинга. Наши алгоритмы используют различные индикаторы и стратегии, чтобы определить оптимальные точки входа и выхода из позиций.
+      title: Robotic trading
+      description: Robotic trading that allows investors to trade in the cryptocurrency market without the need for constant monitoring. Our algorithms use various indicators and strategies to determine the optimal entry and exit points for positions.
       btn:
         enable: true
-        label: Подробнее
+        label: Learn More
         link: "#"      
     - img: 'images/solution2.png'
-      title: Управление API-ключами
-      description: Мы предоставляем инвесторам возможность безопасно преумножать свои инвестиции благодаря управлению API-ключами. Инвестора  могут мониторить свои инвестиции и следить за прогрессом торговли наших аналитиков на криптовалютных биржах безопасно и удобно.
+      title: API key management
+      description: We enable investors to securely multiply their investments through API key management. Investors can monitor their investments and follow our analysts' trading progress on cryptocurrency exchanges safely and conveniently.
       btn:
         enable: true
-        label: Подробнее
+        label: Learn More
         link: "#"      
     - img: 'images/solution3.png'
-      title: Депозиты на основе смарт-контрактов
-      description: Депозиты на основе смарт-контрактов обеспечивают безопасность вложений и гарантируют выплату процентов в автоматическом режиме. Наши депозиты работают на основе блокчейна, что позволяет инвесторам контролировать свои инвестиции и получать прибыль без посредников.
+      title: Deposits based on smart contracts
+      description: Deposits based on smart contracts ensure the security of investments and guarantee automatic interest payments. Our deposits are based on the blockchain, which allows investors to control their investments and make a profit without intermediaries.
       btn:
         enable: true
         disabled: true
-        label: В разработке
+        label: In developing
         link: "#"      
     - img: 'images/solution4.png'
-      title: Академия
-      description: Благодаря нашей академии, которая содержит курсы по основам технического анализа, фундаментального анализа и управлению рисками. Наши эксперты поделятся с вами своими знаниями и опытом, помогая вам развивать свои навыки торговли. Курсы включают  разные уровни сложности для начинающих, продвинутых и профессионалов пользователей.
+      title: Academy
+      description: Thanks to our academy, which contains courses in the basics of technical analysis, fundamental analysis and risk management. Our experts will share their knowledge and experience with you, helping you develop your trading skills. Courses include different levels of difficulty for beginners, advanced and professional users.
       btn:
         enable: true
-        label: Подробнее
+        label: Learn More
         link: "#"
    
    

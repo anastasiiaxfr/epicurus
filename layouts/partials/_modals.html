@@ -106,8 +106,8 @@
     <div class="modal-content">
       <div class="modal-header">
         <div>
-          <h5 class="modal-title">Регистрация</h5>
-          <div class="modal-subtitle">
+          <h5 class="modal-title">Registartion</h5>
+          <!-- <div class="modal-subtitle">
             Уже имеете аккаунт?
             <button
               class="modal-link"
@@ -116,7 +116,7 @@
             >
               Войти
             </button>
-          </div>
+          </div> -->
         </div>
 
         <button
@@ -142,6 +142,22 @@
         <div class="modal-body">
           <div class="modal-row">
             <div class="form-label">
+              <label for="reg_username">Name</label>
+              <div class="invalid-feedback">Only lat letters</div>
+            </div>
+            <div class="input-group has-validation">
+              <input
+                type="text"
+                name="reg_username"
+                class="form-control"
+                id="reg_username"
+                placeholder="Your Name"
+                required
+              />
+            </div>
+          </div>
+          <div class="modal-row">
+            <div class="form-label">
               <label for="reg_email">Email</label>
               <div class="invalid-feedback">Format is wrong</div>
             </div>
@@ -159,7 +175,7 @@
 
           <div class="modal-row">
             <div class="form-label">
-              <label for="reg_passwrod">Пароль</label>
+              <label for="reg_passwrod">Password</label>
               <div class="invalid-feedback">Password is too short</div>
             </div>
             <div class="input-group has-validation">
@@ -176,7 +192,7 @@
 
           <div class="modal-row">
             <div class="form-label">
-              <label for="reg_password_confirm">Повторите пароль</label>
+              <label for="reg_password_confirm">Repeat password</label>
               <div class="invalid-feedback">Password doesn’t match</div>
             </div>
             <div class="input-group has-validation">
@@ -203,8 +219,8 @@
               />
               <label class="form-check-label" for="reg_terms">
                 <span>
-                  Я согласен с
-                  <a href="#" traget="_blank">политикой приватности</a>
+                  I agree with
+                  <a href="#" traget="_blank">privacy policy</a>
                 </span>
               </label>
               <div class="invalid-feedback">
@@ -215,7 +231,7 @@
         </div>
         <div class="modal-footer">
           <button type="submit" class="btn btn-primary">
-            Зарегестрироваться
+            Sign Up
           </button>
         </div>
       </form>
@@ -490,9 +506,9 @@
       <div name="Epicurus_LP_send">
         <div class="modal-body">
           <div class="modal-row text-center">
-            <h5 class="modal-title mt-5 mt-lg-1 mb-3">Данные успешно отправлены</h5>
+            <h5 class="modal-title mt-5 mt-lg-1 mb-3">The data has been successfully submitted.</h5>
             <p>
-              Для подтверждения регистрации, перейдите по ссылке, что была отправлена на указанную Вами почту!
+              To confirm your registration, please follow the link that has been sent to the email address you provided.
             </p>
           </div>
         </div>

@@ -562,12 +562,15 @@ a
 
 		border-radius: 10px
 		box-shadow: $bxsd3
+		background-color: transparent
+		border: none
+		color: $white
 
 		&:hover, &:focus, &:active
-			&:not( &[disabled="disabled"])
+			&:not( &[disabled])
 				box-shadow: $bxsd5
 
-		&[disabled="disabled"]
+		&[disabled]
 			opacity: 0.4
 			box-shadow: $bxsd6
 

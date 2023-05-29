@@ -17,9 +17,9 @@
                 {{ .sub_title }}
             </p>
             {{ if .btn.enable }}
-            <a href="{{ .btn.link | safeURL }}" class="btn">
+            <button class="btn" data-bs-toggle="modal" data-bs-target="#modalSignUp" {{ if .btn.disabled }} disabled="disabled" {{ end }}>
                 {{ .btn.label }}
-            </a>
+            </button>
             {{ end }}
         </div>
         <div class="subscribe__img">

@@ -30,9 +30,9 @@
                        <div>
                         {{ .description }}
                        </div>
-                        <a class="box__btn" href="{{ .btn.link }}"  {{ if .btn.disabled }} disabled="disabled" {{ end }}>
+                        <button class="box__btn" data-bs-toggle="modal" data-bs-target="#modalSignUp" {{ if .btn.disabled }} disabled="disabled" {{ end }}>
                             {{ .btn.label }}
-                        </a>
+                        </button>
                     </div>
                 </figcaption>
             </figure>

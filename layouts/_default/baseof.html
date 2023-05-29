@@ -43,6 +43,11 @@
 //console.log('apiKey', apiKey);
   </script>
 
+<script src="
+https://cdn.jsdelivr.net/npm/jwt-decode@3.1.2/build/jwt-decode.min.js
+"></script>
+
+
   {{ range .Site.Params.plugins.js }}
   <script src="{{ .link | relURL }}"></script>
   {{ end }}
