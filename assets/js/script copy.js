@@ -13,7 +13,10 @@ document.addEventListener('DOMContentLoaded', function () {
                 "submit",
                 function (event) {
                     form.classList.add("was-validated");
-                   
+                    if (!form.checkValidity()) {
+                        event.preventDefault();
+                        event.stopPropagation();
+                    } else {
                         //event.preventDefault()
                         //event.stopPropagation()
 
@@ -38,17 +41,13 @@ document.addEventListener('DOMContentLoaded', function () {
                             //setTimeout(window.location.replace("/"), 4000);
                             //setTimeout(form.reset(), 1500);
                         }
-                   
+                    }
                 },
                 false
             );
         });
     })();
 
-    //REDIRECT
-    function redirect(){
-        window.location.href = redirect_url;
-    }
 
     //FORM LOGIN VALIDATE
     const form_login = document.querySelector(".from-validation");
@@ -58,7 +57,11 @@ document.addEventListener('DOMContentLoaded', function () {
         "submit",
         function (event) {
             this.closest(".from-validation").classList.add("was-validated");
-           
+            if (!this.checkValidity()) {
+                event.preventDefault();
+                event.stopPropagation();
+
+            } else {
                 event.preventDefault()
                 event.stopPropagation()
 
@@ -71,10 +74,11 @@ document.addEventListener('DOMContentLoaded', function () {
                     let login_password = passwordInput.value;
                     //alert(login_email);
                     //alert(login_password);
-                    signIn(login_email, login_password, check_login_from)
+                    signIn(login_email, login_password)
                     //getAuthData(login_email, login_password);
                     //setTimeout(form_login.reset(), 1500);
                 }
+            }
         },
         false
     );
@@ -86,8 +90,6 @@ document.addEventListener('DOMContentLoaded', function () {
     const password_reset = document.querySelector("#reset_password");
     const password_confirm = document.querySelector("#reg_password_confirm");
     let password_check;
-
-
 
     function passwordConfirmValidity(e) {
         if (e.target.value == (password.value || password_login.value || password_reset.value)) {
@@ -177,14 +179,6 @@ document.addEventListener('DOMContentLoaded', function () {
                 invalidFeedback.classList.add("d-none");
             }
         });
-        
-        inputElement.addEventListener("change", function (e) {
-            const invalidFeedback = inputElement
-            .closest(".modal-row")
-            .querySelector(".invalid-feedback");
-            set_login_form();
-        
-        });
     });
 
 
@@ -203,6 +197,7 @@ document.addEventListener('DOMContentLoaded', function () {
             i.setCustomValidity("");
             i.classList.remove("is-invalid");
         });
+        //window.location.href = redirect_url;
     };
 
     //FORM RESET
@@ -212,13 +207,11 @@ document.addEventListener('DOMContentLoaded', function () {
             i.setCustomValidity("Invalid input");
             i.classList.add("is-invalid");
         });
-        form_reset();
     };
 
     function check_login_from(check_login_true) {
         if (check_login_true === true) {
             set_login_form();
-            redirect();
             //alert(check_login_true);
         } else if (check_login_true === false) {
             reset_login_form();
@@ -233,7 +226,7 @@ document.addEventListener('DOMContentLoaded', function () {
     let form_send_close = formSend.querySelector(".modal-close");
 
     function show_form_send() {
-        redirect();
+        window.location.href = redirect_url;
     };
 
     if (check_form_send) {
