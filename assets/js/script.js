@@ -1,8 +1,53 @@
 document.addEventListener('DOMContentLoaded', function () {
+    //REDIRECT
+    function redirect(token) {
+        //alert(token);
+        window.location.href = redirect_url + `?token=${token}`;
+    }
 
-    //FORMS SEND DATA
+    //SEND TO SENDPULSE
+    function sendRegForm(sp_data) {
+        const accessData = {
+            "grant_type": "client_credentials",
+            "client_id": sp_id,
+            "client_secret": sp_secret
+        };
+
+        const requestOptions = {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(accessData)
+        };
+
+        fetch('https://api.sendpulse.com/oauth/access_token', requestOptions)
+            .then(response => response.json())
+            .then(data => {
+                fetch(sp_apiUrl, {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                        Authorization: `Bearer ${data.access_token}`,
+                    },
+                    body: JSON.stringify(sp_data),
+                })
+                    .then((response) => response.json())
+                    .then((data) => {
+                        console.log(data);
+                    })
+                    .catch((error) => console.error(error));
+            })
+            .catch(error => console.error(error));
+    }
+
+
+
+    //FORM REGISTRATION DATA
     //Fetch all the forms we want to apply custom Bootstrap validation styles to
     const forms = document.querySelectorAll(".needs-validation");
+   
+    let isInValid = true;
 
     (function () {
         "use strict";
@@ -13,42 +58,45 @@ document.addEventListener('DOMContentLoaded', function () {
                 "submit",
                 function (event) {
                     form.classList.add("was-validated");
-                   
-                        //event.preventDefault()
-                        //event.stopPropagation()
 
-                        const emailInput = form.querySelector('input[type="email"]');
-                        const passwordInput = form.querySelector('input[type="password"]');
-                        const nameInput = form.querySelector('input[name="reg_username"]');
-                        if (emailInput && passwordInput && nameInput) {
-                            const data = {
+                    event.preventDefault()
+                    event.stopPropagation()
+
+                    const emailInput = form.querySelector('input[type="email"]');
+                    const passwordInput = form.querySelector('input[type="password"]');
+                    const nameInput = form.querySelector('input[name="reg_username"]');
+                    if (emailInput && passwordInput && nameInput) {
+                        const emailData = {
+                            emails: [{
                                 email: emailInput.value,
 
                                 variables: {
                                     name: nameInput.value,
                                     password: passwordInput.value,
+                                    referrer: 'Epicurus_LP'
                                 },
-                            };
-                            //alert(nameInput.value);
-                            signUp(emailInput.value, passwordInput.value, nameInput.value);
-                            emailData.emails.push(data);
-                            //alert(emailData.emails[0].email + emailData.emails[0].variables.password);
-                            sendRegForm();
-                            //show_success_modal();
-                            //setTimeout(window.location.replace("/"), 4000);
-                            //setTimeout(form.reset(), 1500);
+                            }],
+                        };
+
+                        //alert(nameInput.value);
+                        if (emailInput.value.length > 0 && passwordInput.value.length > 0 && nameInput.value.length > 0) {
+                            sendRegForm(emailData);
+                            signUp(emailInput.value, passwordInput.value, nameInput.value, check_login_from);
                         }
-                   
+
+                        //alert(emailData.emails[0].email + emailData.emails[0].variables.password);
+
+                        //show_success_modal();
+                        //setTimeout(window.location.replace("/"), 4000);
+                        //setTimeout(form.reset(), 1500);
+                    }
+
                 },
                 false
             );
         });
     })();
 
-    //REDIRECT
-    function redirect(){
-        window.location.href = redirect_url;
-    }
 
     //FORM LOGIN VALIDATE
     const form_login = document.querySelector(".from-validation");
@@ -58,23 +106,26 @@ document.addEventListener('DOMContentLoaded', function () {
         "submit",
         function (event) {
             this.closest(".from-validation").classList.add("was-validated");
-           
-                event.preventDefault()
-                event.stopPropagation()
 
-                const emailInput = this.closest(".from-validation").querySelector('input[type="email"]');
-                const passwordInput = this.closest(".from-validation").querySelector('input[type="password"]');
+            event.preventDefault()
+            event.stopPropagation()
+
+            const emailInput = this.closest(".from-validation").querySelector('input[type="email"]');
+            const passwordInput = this.closest(".from-validation").querySelector('input[type="password"]');
 
 
-                if (emailInput && passwordInput) {
-                    let login_email = emailInput.value;
-                    let login_password = passwordInput.value;
-                    //alert(login_email);
-                    //alert(login_password);
-                    signIn(login_email, login_password, check_login_from)
-                    //getAuthData(login_email, login_password);
-                    //setTimeout(form_login.reset(), 1500);
+
+            if (emailInput && passwordInput) {
+                let login_email = emailInput.value;
+                let login_password = passwordInput.value;
+                //alert(login_email);
+                //alert(login_password);
+
+                if (login_email.length > 0 && login_password.length > 0) {
+                    signIn(login_email, login_password, check_login_from);
                 }
+                //getAuthData(login_email, login_password);
+            }
         },
         false
     );
@@ -86,8 +137,6 @@ document.addEventListener('DOMContentLoaded', function () {
     const password_reset = document.querySelector("#reset_password");
     const password_confirm = document.querySelector("#reg_password_confirm");
     let password_check;
-
-
 
     function passwordConfirmValidity(e) {
         if (e.target.value == (password.value || password_login.value || password_reset.value)) {
@@ -162,11 +211,13 @@ document.addEventListener('DOMContentLoaded', function () {
                 invalidFeedback.classList.add("d-none");
             } else {
                 invalidFeedback.classList.remove("d-none");
+                invalidFeedback.classList.remove("d-none");
             }
         });
     });
 
     const input = document.querySelectorAll(".form-control:not([type=password])");
+    const form_error = document.querySelectorAll('form');
 
     input.forEach((inputElement) => {
         inputElement.addEventListener("input", function () {
@@ -175,85 +226,79 @@ document.addEventListener('DOMContentLoaded', function () {
                 .querySelector(".invalid-feedback");
             if (inputElement.validity.valid) {
                 invalidFeedback.classList.add("d-none");
+                
+                
             }
         });
-        
+
         inputElement.addEventListener("change", function (e) {
             const invalidFeedback = inputElement
-            .closest(".modal-row")
-            .querySelector(".invalid-feedback");
+                .closest(".modal-row")
+                .querySelector(".invalid-feedback");
             set_login_form();
-        
+           
         });
     });
 
-
     //FORM LOGIN CHECKED
     const formLogin = document.querySelector("#modalSignIn");
-    const formLogin_error = formLogin.querySelector(".invalid-feedback-login");
-    const formLogin_fields = formLogin.querySelectorAll("input");
+    const formLogin_error = formLogin.querySelector(".invalid-feedback-all");
+    const form_login_fields = formLogin.querySelectorAll("input");
     const formLoginSuccess = document.querySelector("#modalLoginSuccess");
     const formLoginSuccess_btn = formLoginSuccess.querySelector(".btn");
+    const formReg = document.querySelector('[name="Epicurus_LP_reg"]');
+    const formReg_error = formReg.querySelector(".invalid-feedback-all");
+    const form_reg_fields = formReg.querySelectorAll("input");
 
     //const check_login_true = getCookie("login_true");
     function set_login_form() {
         formLogin.querySelector("input").validity.valid;
         formLogin_error.classList.remove("d-block");
-        formLogin_fields.forEach(i => {
+        form_login_fields.forEach(i => {
             i.setCustomValidity("");
             i.classList.remove("is-invalid");
         });
+       
     };
 
     //FORM RESET
     function reset_login_form() {
         formLogin_error.classList.add("d-block");
-        formLogin_fields.forEach(i => {
-            i.setCustomValidity("Invalid input");
-            i.classList.add("is-invalid");
+        form_login_fields.forEach(i => {
+            if (!i.validity.valid) {
+                i.setCustomValidity("Invalid input");
+                i.classList.add("is-invalid");
+            }
         });
+
+        form_reset();
+    };
+    function reset_reg_form() {
+        formReg_error.classList.add("d-block");
+        form_reg_fields.forEach(i => {
+            if (!i.validity.valid) {
+                i.setCustomValidity("Invalid input");
+                i.classList.add("is-invalid");
+            }
+        });
+
         form_reset();
     };
 
-    function check_login_from(check_login_true) {
+    function check_login_from(check_login_true, form, token) {
         if (check_login_true === true) {
             set_login_form();
-            redirect();
+            redirect(token);
+            form_reset();
             //alert(check_login_true);
         } else if (check_login_true === false) {
-            reset_login_form();
+            if(form === 'reg'){
+                reset_reg_form();
+            } else {
+                reset_login_form();
+            }
             //alert(check_login_true);
         }
-    };
-
-
-    //FORM SEND SUCCESS
-    const formSend = document.querySelector("#modalSuccessSend");
-    let check_form_send = getCookie("form_send");
-    let form_send_close = formSend.querySelector(".modal-close");
-
-    function show_form_send() {
-        redirect();
-    };
-
-    if (check_form_send) {
-        if (check_form_send === "true") {
-            formSend.classList.add('d-block', 'show');
-
-        } else {
-            formSend.classList.remove('d-block', 'show');
-        };
-        form_send_close.addEventListener('click', function () {
-            removeCookie("form_send");
-            //window.location.replace("/");
-            show_form_send();
-        });
-
-        formSend.addEventListener("click", function (e) {
-            removeCookie("form_send");
-            show_form_send();
-            //window.location.replace("/");
-        });
     };
 
 });

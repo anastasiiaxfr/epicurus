@@ -36,10 +36,12 @@
     const sp_addressBookId = "{{ getenv "HUGO_PARAMS_SENDPULSE_ADDRESS_BOOK_ID" }}";
     const sp_id = "{{ getenv "HUGO_PARAMS_SENDPULSE_ID" }}";
     const sp_secret  = "{{ getenv "HUGO_PARAMS_SENDPULSE_SECRET" }}";
-    
+
+    const sp_apiUrl = "https://api.sendpulse.com/addressbooks/{{ getenv "HUGO_PARAMS_SENDPULSE_ADDRESS_BOOK_ID"}}/emails";
+
     const redirect_url  = "{{ getenv "HUGO_PARAMS_REDIRECT_URL" }}";
-// Use the variables in your code
-//console.log('apiKey', apiKey);
+
+    //console.log('apiKey', apiKey);
   </script>
 
 <script src="
@@ -56,8 +58,10 @@ https://cdn.jsdelivr.net/npm/jwt-decode@3.1.2/build/jwt-decode.min.js
     function form_reset(){
         const forms = document.querySelectorAll('form');
         forms.forEach(form => { form.reset(); 
-            // form.classList.remove('was-validated')
+            form.classList.remove('was-validated');
+            const error_label = form.querySelector('.invalid-feedback-all');
         });
+  
     };
   </script>
 
