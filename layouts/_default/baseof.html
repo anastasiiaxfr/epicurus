@@ -4,87 +4,90 @@
 <body lang="{{ with .Site.LanguageCode }}{{ . }}{{ else }}en-US{{ end }}" class="page__body">
 
 
-  <main class="page__wrapper">
+    <main class="page__wrapper">
 
 
-    {{- partial "preloader.html" . -}}
-    <div class="header-span"></div>
+        {{- partial "preloader.html" . -}}
+        <div class="header-span"></div>
 
 
-    {{- block "main" . }}{{- end }}
+        {{- block "main" . }}{{- end }}
 
-  </main>
+    </main>
 
 
-  {{- partial "_btn-top.html" . -}}
-  {{- partial "footer.html" . -}}
+    {{- partial "_btn-top.html" . -}}
+    {{- partial "footer.html" . -}}
 
-  <script defer src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
-  <script defer src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
-  <script defer src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
+    <script defer src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+    <script defer src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
+    <script defer src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
 
-  <script>
-    // Access the environment variables
-    const apiKey = "{{ getenv "HUGO_PARAMS_FIREBASE_API_KEY" }}";
-    const authDomain = "{{  getenv "HUGO_PARAMS_FIREBASE_AUTH_DOMAIN" }}";
-    const databaseURL = "{{  getenv "HUGO_PARAMS_FIREBASE_DATABASE_URL" }}";
-    const projectId = "{{  getenv "HUGO_PARAMS_FIREBASE_PROJECT_ID" }}";
-    const storageBucket = "{{  getenv "HUGO_PARAMS_FIREBASE_STORAGE_BUCKET" }}";
-    const messagingSenderId = "{{  getenv "HUGO_PARAMS_FIREBASE_MESSAGING_SENDER_ID" }}";
-    const appId = "{{ getenv "HUGO_PARAMS_FIREBASE_APP_ID" }}";
+    <script>
+        // Access the environment variables
+        const apiKey = "{{ getenv "HUGO_PARAMS_FIREBASE_API_KEY" }}";
+        const authDomain = "{{  getenv "HUGO_PARAMS_FIREBASE_AUTH_DOMAIN" }}";
+        const databaseURL = "{{  getenv "HUGO_PARAMS_FIREBASE_DATABASE_URL" }}";
+        const projectId = "{{  getenv "HUGO_PARAMS_FIREBASE_PROJECT_ID" }}";
+        const storageBucket = "{{  getenv "HUGO_PARAMS_FIREBASE_STORAGE_BUCKET" }}";
+        const messagingSenderId = "{{  getenv "HUGO_PARAMS_FIREBASE_MESSAGING_SENDER_ID" }}";
+        const appId = "{{ getenv "HUGO_PARAMS_FIREBASE_APP_ID" }}";
 
-    const sp_addressBookId = "{{ getenv "HUGO_PARAMS_SENDPULSE_ADDRESS_BOOK_ID" }}";
-    const sp_id = "{{ getenv "HUGO_PARAMS_SENDPULSE_ID" }}";
-    const sp_secret  = "{{ getenv "HUGO_PARAMS_SENDPULSE_SECRET" }}";
+        const sp_addressBookId = "{{ getenv "HUGO_PARAMS_SENDPULSE_ADDRESS_BOOK_ID" }}";
+        const sp_id = "{{ getenv "HUGO_PARAMS_SENDPULSE_ID" }}";
+        const sp_secret = "{{ getenv "HUGO_PARAMS_SENDPULSE_SECRET" }}";
 
-    const sp_apiUrl = "https://api.sendpulse.com/addressbooks/{{ getenv "HUGO_PARAMS_SENDPULSE_ADDRESS_BOOK_ID"}}/emails";
+        const sp_apiUrl = "https://api.sendpulse.com/addressbooks/{{ getenv "HUGO_PARAMS_SENDPULSE_ADDRESS_BOOK_ID"}}/emails";
 
-    const redirect_url  = "{{ getenv "HUGO_PARAMS_REDIRECT_URL" }}";
+        const redirect_url = "{{ getenv "HUGO_PARAMS_REDIRECT_URL" }}";
+        const secretKey = "{{ getenv "HUGO_PARAMS_SECRET_TOKEN" }}";
 
     //console.log('apiKey', apiKey);
-  </script>
+    </script>
 
-<script src="
-https://cdn.jsdelivr.net/npm/jwt-decode@3.1.2/build/jwt-decode.min.js
-"></script>
-
-
-  {{ range .Site.Params.plugins.js }}
-  <script src="{{ .link | relURL }}"></script>
-  {{ end }}
+    <script src="//cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.2/rollups/hmac-sha256.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.2/components/enc-base64-min.js"></script>
+    
 
 
-  <script>
-    function form_reset(){
-        const forms = document.querySelectorAll('form');
-        forms.forEach(form => { form.reset(); 
-            form.classList.remove('was-validated');
-            const error_label = form.querySelector('.invalid-feedback-all');
-        });
-  
-    };
-  </script>
-
-  {{ $fb := resources.Get "js/_fb.js" | minify }}
-  <script defer src="{{ $fb.Permalink | relURL }}"></script>
-  {{ $cookie := resources.Get "js/_cookie.js" | minify }}
-  <script defer src="{{ $cookie.Permalink | relURL }}"></script>
-  {{ $menu := resources.Get "js/_menu.js" | minify }}
-  <script defer src="{{ $menu.Permalink | relURL }}"></script>
-  
-  {{ $switcher := resources.Get "js/_switcher.js" | minify }}
-  <script defer src="{{ $switcher.Permalink | relURL }}"></script>
-  {{ $text_copy := resources.Get "js/_text-copy.js" | minify }}
-  <script defer src="{{ $text_copy.Permalink | relURL }}"></script>
-  
-  {{ $modal := resources.Get "js/_modal.js" | minify }}
-  <script defer src="{{ $modal.Permalink | relURL }}"></script>
-
-  {{ $script := resources.Get "js/script.js" | minify }}
-  <script defer src="{{ $script.Permalink | relURL }}?v={{ now.Format " 01-02-2006-14-52-26"}}"></script>
+    {{ range .Site.Params.plugins.js }}
+    <script src="{{ .link | relURL }}"></script>
+    {{ end }}
 
 
-  {{- partial "_svg.html" . -}}
+    <script>
+        function form_reset() {
+            const forms = document.querySelectorAll('form');
+            forms.forEach(form => {
+                form.reset();
+                form.classList.remove('was-validated');
+                const error_label = form.querySelector('.invalid-feedback-all');
+            });
+
+        };
+    </script>
+
+    {{ $fb := resources.Get "js/_fb.js" | minify }}
+    <script defer src="{{ $fb.Permalink | relURL }}"></script>
+    {{ $cookie := resources.Get "js/_cookie.js" | minify }}
+    <script defer src="{{ $cookie.Permalink | relURL }}"></script>
+    {{ $menu := resources.Get "js/_menu.js" | minify }}
+    <script defer src="{{ $menu.Permalink | relURL }}"></script>
+
+    {{ $switcher := resources.Get "js/_switcher.js" | minify }}
+    <script defer src="{{ $switcher.Permalink | relURL }}"></script>
+    {{ $text_copy := resources.Get "js/_text-copy.js" | minify }}
+    <script defer src="{{ $text_copy.Permalink | relURL }}"></script>
+
+    {{ $modal := resources.Get "js/_modal.js" | minify }}
+    <script defer src="{{ $modal.Permalink | relURL }}"></script>
+
+    {{ $script := resources.Get "js/script.js" | minify }}
+    <script defer src="{{ $script.Permalink | relURL }}?v={{ now.Format " 01-02-2006-14-52-26"}}"></script>
+
+
+    {{- partial "_svg.html" . -}}
 
 </body>
+
 </html>

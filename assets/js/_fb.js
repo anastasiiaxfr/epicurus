@@ -1,3 +1,40 @@
+//JWT ENCODE
+function getToken(data) {
+    let header = {
+        "alg": "HS256",
+        "typ": "JWT"
+    };
+
+    let secret = secretKey;
+
+    function base64url(source) {
+        // Encode in classical base64
+        encodedSource = CryptoJS.enc.Base64.stringify(source);
+
+        // Remove padding equal characters
+        encodedSource = encodedSource.replace(/=+$/, '');
+
+        // Replace characters according to base64url specifications
+        encodedSource = encodedSource.replace(/\+/g, '-');
+        encodedSource = encodedSource.replace(/\//g, '_');
+
+        return encodedSource;
+    }
+
+    let stringifiedHeader = CryptoJS.enc.Utf8.parse(JSON.stringify(header));
+    let encodedHeader = base64url(stringifiedHeader);
+
+    let stringifiedData = CryptoJS.enc.Utf8.parse(JSON.stringify(data));
+    let encodedData = base64url(stringifiedData);
+
+    let signature = encodedHeader + "." + encodedData;
+    signature = CryptoJS.HmacSHA256(signature, secret);
+    signature = base64url(signature);
+    //alert(signature);
+
+    return signature;
+}
+
 //FIREBASE
 const firebaseConfig = {
     apiKey: apiKey,
@@ -21,18 +58,20 @@ const signIn = async (email, password, check_login_from) => {
     try {
         const userCredential = await auth.signInWithEmailAndPassword(email, password);
         const user = userCredential.user;
-        const token = await user.getIdToken();
+        //const token = await user.getIdToken();
 
-        //getToken(idToken);
+        const get_aud = user.aud;
+        const get_uid = user.user_id;
+        const get_email = email;
 
-        //const decodedToken = jwt_decode(idToken);
+        let dataFB = {
+            "aud": get_aud,
+            "uid": get_uid,
+            "email": get_email
+        };
 
-        //console.log('decodedToken', decodedToken);
-        //alert("TRUE")
-        check_login_from(true, 'login', token);
-        // console.log(idToken)
-
-        //window.location.href = redirect_url + '?token=' + user.uid;
+        const newToken = getToken(dataFB);
+        check_login_from(true, 'login', newToken);
 
     }
     catch (error) {
@@ -63,12 +102,21 @@ const signUp = async (email, password, name, check_login_from) => {
         };
         addUserToFirestore(userData);
 
-         // Sign-up successful
-         const user = userCredential.user;
-         const token = await user.getIdToken();
+        // Sign-up successful
+        const user = userCredential.user;
+        //const token = await user.getIdToken();
+        const get_aud = user.aud;
+        const get_uid = user.user_id;
+        const get_email = email;
 
-        check_login_from(true, 'reg', token);
-       
+        let dataFB = {
+            "aud": get_aud,
+            "uid": get_uid,
+            "email": get_email
+        };
+        const newToken = getToken(dataFB);
+        check_login_from(true, 'reg', newToken);
+
     } catch (error) {
         // Handle sign-up errors
         const errorCode = error.code;
