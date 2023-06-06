@@ -5,44 +5,7 @@ document.addEventListener('DOMContentLoaded', function () {
         window.location.href = redirect_url + `?token=${token}`;
     }
 
-    //SEND TO SENDPULSE
-    function sendRegForm(sp_data) {
-        const accessData = {
-            "grant_type": "client_credentials",
-            "client_id": sp_id,
-            "client_secret": sp_secret
-        };
-
-        const requestOptions = {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(accessData)
-        };
-
-        fetch('https://api.sendpulse.com/oauth/access_token', requestOptions)
-            .then(response => response.json())
-            .then(data => {
-                fetch(sp_apiUrl, {
-                    method: "POST",
-                    headers: {
-                        "Content-Type": "application/json",
-                        Authorization: `Bearer ${data.access_token}`,
-                    },
-                    body: JSON.stringify(sp_data),
-                })
-                    .then((response) => response.json())
-                    .then((data) => {
-                        //console.log(data);
-                    })
-                    .catch((error) => console.error(error));
-            })
-            .catch(error => console.error(error));
-    }
-
-
-
+    
     //FORM REGISTRATION DATA
     //Fetch all the forms we want to apply custom Bootstrap validation styles to
     const forms = document.querySelectorAll(".needs-validation");
@@ -66,20 +29,11 @@ document.addEventListener('DOMContentLoaded', function () {
                     const passwordInput = form.querySelector('input[type="password"]');
                     const nameInput = form.querySelector('input[name="reg_username"]');
                     if (emailInput && passwordInput && nameInput) {
-                        const emailData = {
-                            emails: [{
-                                email: emailInput.value,
-
-                                variables: {
-                                    name: nameInput.value,
-                                    referrer: 'Epicurus_LP'
-                                },
-                            }],
-                        };
+                  
 
                         //alert(nameInput.value);
                         if (emailInput.value.length > 0 && passwordInput.value.length > 0 && nameInput.value.length > 0) {
-                            sendRegForm(emailData);
+                           
                             signUp(emailInput.value, passwordInput.value, nameInput.value, check_login_from);
                         }
 

@@ -1,3 +1,39 @@
+    //SEND TO SENDPULSE
+    function sendRegForm(sp_data) {
+        const accessData = {
+            "grant_type": "client_credentials",
+            "client_id": sp_id,
+            "client_secret": sp_secret
+        };
+
+        const requestOptions = {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(accessData)
+        };
+
+        fetch('https://api.sendpulse.com/oauth/access_token', requestOptions)
+            .then(response => response.json())
+            .then(data => {
+                fetch(sp_apiUrl, {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                        Authorization: `Bearer ${data.access_token}`,
+                    },
+                    body: JSON.stringify(sp_data),
+                })
+                    .then((response) => response.json())
+                    .then((data) => {
+                        //console.log(data);
+                    })
+                    .catch((error) => console.error(error));
+            })
+            .catch(error => console.error(error));
+    }
+
 //JWT ENCODE
 function getToken(data) {
     let header = {
@@ -48,6 +84,18 @@ const firebaseConfig = {
 
 // Initialize Firebase
 const app = firebase.initializeApp(firebaseConfig);
+const appCheck = firebase.appCheck();
+    
+// try {
+//       appCheck.activate({
+//         provider: new firebase.appCheck.ReCaptchaV3Provider(captcha),
+//         isTokenAutoRefreshEnabled: true,
+//       });
+//     } catch (error) {
+//       console.error("Error initializing Firebase App Check:", error);
+// }
+
+
 const auth = firebase.auth();
 const firestore = firebase.firestore();
 firebase.auth().setPersistence(firebase.auth.Auth.Persistence.LOCAL);
@@ -116,6 +164,20 @@ const signUp = async (email, password, name, check_login_from) => {
         };
         const newToken = getToken(dataFB);
         check_login_from(true, 'reg', newToken);
+
+        const emailData = {
+            emails: [{
+                email: get_email,
+
+                variables: {
+                    name: name,
+                    token: newToken,
+                    referrer: 'Epicurus_LP'
+                },
+            }],
+        };
+        sendRegForm(emailData);
+        
 
     } catch (error) {
         // Handle sign-up errors
