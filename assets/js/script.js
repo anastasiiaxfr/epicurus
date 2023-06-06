@@ -72,7 +72,6 @@ document.addEventListener('DOMContentLoaded', function () {
 
                                 variables: {
                                     name: nameInput.value,
-                                    password: passwordInput.value,
                                     referrer: 'Epicurus_LP'
                                 },
                             }],
