@@ -16,6 +16,8 @@ modal.forEach(function (ell) {
             this.classList.add("d-none");
             this.classList.remove("show");
             form_reset();
+            grecaptcha.reset();
+            grecaptcha.reset(widgetId2)
         }
     });
 });
@@ -46,6 +48,8 @@ modal_close.forEach(function (ell) {
         modal_current.classList.remove("show");
         modal_current.classList.remove("d-block");
         form_reset();
+        grecaptcha.reset();
+        grecaptcha.reset(widgetId2);
         if (!body.classList.contains("modal-open")) {
             body.style.overflow = "";
             body.style.paddingRight = "";

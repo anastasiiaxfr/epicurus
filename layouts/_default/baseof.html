@@ -21,12 +21,14 @@
 
     <script defer src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
 
-    <script defer src="https://cdnjs.cloudflare.com/ajax/libs/firebase/8.10.1/firebase-app-check.min.js" integrity="sha512-Mu22KHVWdtvycnskNYI07It2Np/xMvsMG5phcFjo7hvX53NLwi9UbnOpOnZtQhoTe4ODY+11Wq/mnnyX0x3UdQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script defer src="https://cdnjs.cloudflare.com/ajax/libs/firebase/8.10.1/firebase-app-check.min.js"
+        integrity="sha512-Mu22KHVWdtvycnskNYI07It2Np/xMvsMG5phcFjo7hvX53NLwi9UbnOpOnZtQhoTe4ODY+11Wq/mnnyX0x3UdQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
     <script defer src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
     <script defer src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
-    
-   
+
+
     <script>
         // Access the environment variables
         const apiKey = "{{ getenv "HUGO_PARAMS_FIREBASE_API_KEY" }}";
@@ -51,9 +53,36 @@
     //console.log('apiKey', apiKey);
     </script>
 
+    <script type="text/javascript">
+        var verifyCallback = function (response) {
+            //alert(response);
+        };
+        function onCaptchaChangeRegister(token) {
+            captcha_response = token;
+            document.querySelector('#captcha-register').nextElementSibling.classList.add('d-none');
+        }
+        function onCaptchaChangeLogin(token){
+            document.querySelector('#captcha-login').nextElementSibling.classList.add('d-none');
+        }
+        var widgetId1;
+        var widgetId2;
+        var onloadCallback = function () {
+            widgetId1 = grecaptcha.render('captcha-login', {
+                'sitekey': captcha,
+                'theme': 'dark',
+                'callback' : onCaptchaChangeLogin,
+            });
+            widgetId2 = grecaptcha.render('captcha-register', {
+                'sitekey': captcha,
+                'theme': 'dark',
+                'callback' : onCaptchaChangeRegister,
+            });
+        };
+    </script>
+
     <script src="//cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.2/rollups/hmac-sha256.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.2/components/enc-base64-min.js"></script>
-    
+
 
 
     {{ range .Site.Params.plugins.js }}
@@ -72,6 +101,7 @@
 
         };
     </script>
+
 
     {{ $fb := resources.Get "js/_fb.js" | minify }}
     <script defer src="{{ $fb.Permalink | relURL }}"></script>
@@ -93,6 +123,8 @@
 
 
     {{- partial "_svg.html" . -}}
+
+    <script src="https://www.google.com/recaptcha/api.js?onload=onloadCallback&render=explicit" async defer></script>
 
 </body>
 

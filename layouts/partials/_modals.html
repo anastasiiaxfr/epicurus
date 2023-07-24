@@ -47,11 +47,10 @@
         method="POST"
         name="Epicurus_LP_login"
         data-netlify="true"
-        action="/"
+        action="javascript:alert(grecaptcha.getResponse(widgetId1));"
       >
         <div class="modal-body">
           <div class="modal-row">
-        
             <div class="form-label">
               <label for="login_email">Email</label>
               <div class="invalid-feedback">Format is wrong</div>
@@ -83,8 +82,14 @@
                 required
               />
             </div>
-            <div class="invalid-feedback-all">Email or Passrord are incorrect</div>
+            <div class="invalid-feedback-all">
+              Email or Passrord are incorrect
+            </div>
           </div>
+        </div>
+        <div class="modal-row">
+            <div id="captcha-login"></div>
+            <div class="invalid-feedback">Captcha is Required</div>
         </div>
         <div class="modal-footer">
           <button type="submit" class="btn btn-primary">Log in</button>
@@ -135,7 +140,7 @@
         class="needs-validation"
         novalidate
         method="POST"
-        action="/"
+        action="javascript:grecaptcha.reset(widgetId2);"
         name="Epicurus_LP_reg"
         data-netlify="true"
       >
@@ -232,11 +237,14 @@
             The email address is already registered. Please try logging in.
           </div>
 
+          <div class="modal-row">
+            <div id="captcha-register"></div>
+            <div class="invalid-feedback">Captcha is Required</div>
+          </div>
         </div>
+        
         <div class="modal-footer">
-          <button type="submit" class="btn btn-primary">
-            Sign Up
-          </button>
+          <button type="submit" class="btn btn-primary">Sign Up</button>
         </div>
       </form>
     </div>
@@ -308,9 +316,7 @@
           <div class="modal-row">
             <div class="form-label">
               <label for="reset_password"> New password </label>
-              <div class="invalid-feedback">
-                Password is too short
-              </div>
+              <div class="invalid-feedback">Password is too short</div>
             </div>
             <div class="input-group has-validation">
               <input
@@ -510,9 +516,12 @@
       <div name="Epicurus_LP_send">
         <div class="modal-body">
           <div class="modal-row text-center">
-            <h5 class="modal-title mt-5 mt-lg-1 mb-3">The data has been successfully submitted.</h5>
+            <h5 class="modal-title mt-5 mt-lg-1 mb-3">
+              The data has been successfully submitted.
+            </h5>
             <p>
-              To confirm your registration, please follow the link that has been sent to the email address you provided.
+              To confirm your registration, please follow the link that has been
+              sent to the email address you provided.
             </p>
           </div>
         </div>
@@ -553,9 +562,7 @@
         <div class="modal-body">
           <div class="modal-row text-center">
             <h5 class="modal-title mt-5 mt-lg-1 mb-3">Регистрация Успешна</h5>
-            <p>
-                Welcome to our platform
-            </p>
+            <p>Welcome to our platform</p>
           </div>
         </div>
         <div class="modal-footer">
@@ -598,9 +605,7 @@
         <div class="modal-body">
           <div class="modal-row text-center">
             <h5 class="modal-title mt-5 mt-lg-1 mb-3">Верификация пройдена</h5>
-            <p>
-                Welcome to our platform
-            </p>
+            <p>Welcome to our platform</p>
           </div>
         </div>
         <div class="modal-footer">

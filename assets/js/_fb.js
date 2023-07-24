@@ -86,14 +86,14 @@ const firebaseConfig = {
 const app = firebase.initializeApp(firebaseConfig);
 const appCheck = firebase.appCheck();
     
-// try {
-//       appCheck.activate({
-//         provider: new firebase.appCheck.ReCaptchaV3Provider(captcha),
-//         isTokenAutoRefreshEnabled: true,
-//       });
-//     } catch (error) {
-//       console.error("Error initializing Firebase App Check:", error);
-// }
+try {
+      appCheck.activate({
+        provider: new firebase.appCheck.ReCaptchaV3Provider(captcha),
+        isTokenAutoRefreshEnabled: true,
+      });
+    } catch (error) {
+      console.error("Error initializing Firebase App Check:", error);
+}
 
 
 const auth = firebase.auth();

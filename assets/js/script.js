@@ -19,12 +19,17 @@ document.addEventListener('DOMContentLoaded', function () {
         Array.prototype.slice.call(forms).forEach(function (form) {
             form.addEventListener(
                 "submit",
+
+            
                 function (event) {
                     form.classList.add("was-validated");
 
                     event.preventDefault()
                     event.stopPropagation()
 
+                    const captcha_response = grecaptcha.getResponse(widgetId2);
+
+                    //alert(captcha_response)
                     const emailInput = form.querySelector('input[type="email"]');
                     const passwordInput = form.querySelector('input[type="password"]');
                     const nameInput = form.querySelector('input[name="reg_username"]');
@@ -32,7 +37,7 @@ document.addEventListener('DOMContentLoaded', function () {
                   
 
                         //alert(nameInput.value);
-                        if (emailInput.value.length > 0 && passwordInput.value.length > 0 && nameInput.value.length > 0) {
+                        if (emailInput.value.length > 0 && passwordInput.value.length > 0 && nameInput.value.length > 0 && captcha_response.length > 0) {
                            
                             signUp(emailInput.value, passwordInput.value, nameInput.value, check_login_from);
                         }
@@ -54,6 +59,7 @@ document.addEventListener('DOMContentLoaded', function () {
     //FORM LOGIN VALIDATE
     const form_login = document.querySelector(".from-validation");
     const form_login_btn = document.querySelector(".from-validation .btn");
+    const captcha_login = document.querySelector("#captcha-login");
 
     form_login.addEventListener(
         "submit",
@@ -63,12 +69,18 @@ document.addEventListener('DOMContentLoaded', function () {
             event.preventDefault()
             event.stopPropagation()
 
+            const captcha_response = grecaptcha.getResponse();
+
             const emailInput = this.closest(".from-validation").querySelector('input[type="email"]');
             const passwordInput = this.closest(".from-validation").querySelector('input[type="password"]');
 
+            //alert(captcha_response)
 
+            if(captcha_response.length > 0){
+                this.querySelector('.invalid-feedback').classList.add('d-none');
+            }
 
-            if (emailInput && passwordInput) {
+            if (emailInput && passwordInput && captcha_response.length > 0) {
                 let login_email = emailInput.value;
                 let login_password = passwordInput.value;
                 //alert(login_email);
@@ -79,6 +91,8 @@ document.addEventListener('DOMContentLoaded', function () {
                 }
                 //getAuthData(login_email, login_password);
             }
+
+               
         },
         false
     );
